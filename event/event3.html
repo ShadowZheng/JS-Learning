@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>自定义鼠标右键</title>
+        <style>
+            * {margin: 0; padding: 0;}
+            #ull {
+                width: 100px;
+                background-color: #cccccc;
+                border: 1px solid black;
+                display: none;
+                position: absolute;
+                list-style-type: none;
+            }
+            #ull li {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <ul id="ull">
+            <li>登录</li>
+            <li>注册</li>
+            <li>注销</li>
+            <li>帮助</li>
+        </ul>
+
+        <script>
+            document.oncontextmenu = function(e) {
+                var oUl = document.getElementById("ull");
+                oUl.style.display = "block";
+                oUl.style.left = e.clientX + "px";
+                oUl.style.top = e.clientY + "px";
+                return false;
+            }
+            document.onclick = function() {
+                var oUl = document.getElementById("ull");
+                oUl.style.display = "none";
+            }
+        </script>
+    </body>
+</html>

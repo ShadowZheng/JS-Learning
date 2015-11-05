@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cookie</title>
+        <style>
+            #div1 {
+                width: 400px;
+                height: 400px;
+                background-color: red;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <form id="loginForm" action="http://www.baidu.com">
+            用户名：<input type="text" name="user">
+            密码：<input type="password" name="pass">
+            <input type="submit" value="提交">
+            <a href="javascript:;">清楚记录</a>
+        </form>
+
+        <div id="div1"></div>
+        <script src="jquery.js"></script>
+        <script>
+            function setCookie(name, value, time) {
+                var date = new Date();
+                date.setDate(date.getDate() + time);
+                document.cookie= name + "=" + value + ";expires=" + date;
+            }
+
+            function getCookie(name) {
+                var arr = document.cookie.split("; ");
+                for(var i = 0; i < arr.length; i++) {
+                    var arr1 = arr[i].split("=");
+                    if (arr1[0] == name) {
+                        return arr1[1];
+                    }
+                }
+                return '';
+            }
+
+            function removeCookie(name) {
+                setCookie(name, '', -1);
+            }
+
+            window.onload = function() {
+                var oForm = document.getElementById("loginForm");
+                var oUser = document.getElementsByName("user")[0];
+                var oClearBtn = document.getElementsByTagName("a")[0];
+
+                oForm.onsubmit = function() {
+                    setCookie("user", oUser.value, 30);
+                }
+
+                oUser.value = getCookie("user");
+
+                oClearBtn.onclick = function() {
+                    removeCookie("user");
+                    oUser.value = '';
+                }
+
+            }
+        </script>
+    </body>
+</html>
