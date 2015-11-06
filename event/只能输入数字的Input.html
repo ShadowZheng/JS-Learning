@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>只能输入数字的input</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var txt = document.getElementById('txt');
+                txt.onkeydown = function(ev) {
+                    var e = ev || event;
+                    // 0-9 keyCode: 48-57 小键盘keyCode:96-105 退格键：8
+                    if (e.keyCode !=8 && !((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105))){
+                        return false;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="txt">
+    </body>
+</html>

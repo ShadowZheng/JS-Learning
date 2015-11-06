@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ctrl + Enter提交留言</title>
+    </head>
+    <script type="text/javascript">
+        window.onload = function() {
+            var oTxtarea = document.getElementById('area');
+            var oInput = document.getElementById('input');
+            var oBtn = document.getElementById('submit');
+
+            oBtn.onclick = function() {
+                if (oInput.value) {
+                    oTxtarea.value += oInput.value + '\n';
+                    oInput.value = '';
+                }
+            }
+
+            oInput.onkeydown = function(ev) {
+                var e = ev || event;
+                if (e.keyCode == 13 && e.ctrlKey) {
+                    if (oInput.value) {
+                        oTxtarea.value += oInput.value + '\n';
+                        oInput.value = '';
+                    }
+                }
+            }
+        }
+    </script>
+    <body>
+        <textarea id="area" name="textarea" rows="8" cols="40"></textarea><br />
+        <input id="input" type="text" name="input" value="">
+        <input id="submit" type="button" name="submit" value="发送">
+    </body>
+</html>

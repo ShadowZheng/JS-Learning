@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html onclick="alert(this.tagName)">
+    <head>
+        <meta charset="utf-8">
+        <title>事件冒泡</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv1 = document.getElementById('div1');
+                var oDiv2 = document.getElementById('div2');
+                var oDiv3 = document.getElementById('div3');
+
+                oDiv1.onclick = function() {
+                    alert(this.style.background);
+                }
+                oDiv2.onclick = function() {
+                    alert(this.style.background);
+                }
+                oDiv3.onclick = function(ev) {
+                    var e = ev || event;
+                    alert(this.style.background);
+                    // e.cancelBubble = true; 通过设置事件的cancelBubble可以阻止事件的冒泡
+                }
+            }
+        </script>
+    </head>
+    <!-- javascript的事件冒泡机制就是当事件被触发后，事件会向父元素传递，一直传递到document，
+        父元素的事件也会被触发。-->
+    <body onclick="alert(this.tagName)">
+        <div style="width: 400px;height: 400px;background: red;" id="div1">
+            <div style="width: 200px;height: 200px;background: green;" id="div2">
+                <div style="width: 100px;height: 100px;background: gray;" id="div3"></div>
+            </div>
+        </div>
+    </body>
+</html>

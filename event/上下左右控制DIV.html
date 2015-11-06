@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>键盘事件</title>
+    </head>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            var oDiv = document.getElementById('div1');
+
+            document.onkeydown = function(ev) {
+                var e = ev || event;
+                var speed = 10;
+                switch (e.keyCode) {
+                    // 左 -> 37
+                    case 37:
+                        oDiv.style.left = oDiv.offsetLeft - speed + 'px';
+                        break;
+                    // 上 -> 38
+                    case 38:
+                        oDiv.style.top = oDiv.offsetTop - speed + 'px';
+                        break;
+                    // 右 -> 39
+                    case 39:
+                        oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                        break;
+                    // 下 -> 40
+                    case 40:
+                        oDiv.style.top = oDiv.offsetTop + speed + 'px';
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    </script>
+    <body>
+        <div id="div1"></div>
+    </body>
+</html>

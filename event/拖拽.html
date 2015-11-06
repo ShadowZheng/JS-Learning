@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>拖拽</title>
+        <style>
+            #div1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                position: absolute;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv = document.getElementById('div1');
+
+                var offsetLeft, offsetTop;
+                oDiv.onmousedown = function(ev) {
+                    var e = ev || event;
+                    offsetLeft = e.clientX - this.offsetLeft;
+                    offsetTop = e.clientY - this.offsetTop;
+
+                    /* 首先这里onmousemove和onmouseup事件应该是在onmousedown里面绑定的
+                    为什么绑定在document上是因为防止用户拖拽的速度过快鼠标移出DIV后引起的拖拽异常。
+                    */
+                    document.onmousemove = function(ev) {
+                        var e = ev || event;
+                        var l = e.clientX - offsetLeft;
+                        var t = e.clientY - offsetTop;
+                        if (l < 0) {
+                            l = 0;
+                        }
+                        var maxLeft = document.documentElement.clientWidth - oDiv.offsetWidth;
+                        if (l > maxLeft) {
+                            l = maxLeft;
+                        }
+
+                        if (t < 0) {
+                            t = 0;
+                        }
+                        var maxTop = document.documentElement.clientHeight - oDiv.offsetHeight;
+                        if (t > maxTop) {
+                            t = maxTop;
+                        }
+
+                        oDiv.style.left = l + 'px';
+                        oDiv.style.top = t + 'px';
+                    }
+                    // onmouseup中仅把onmousemove和自己移出
+                    document.onmouseup = function() {
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+
+                    //防止低版本FF浏览器中拖拽的bug
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1"></div>
+    </body>
+</html>
