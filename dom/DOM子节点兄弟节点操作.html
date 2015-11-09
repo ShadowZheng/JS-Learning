@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DOM子节点和兄弟节点操作</title>
+    <script type="text/javascript">
+      window.onload = function() {
+        var oUl = document.getElementById('ul1');
+        // firstChild 第一个子节点
+        var first = oUl.firstElementChild || oUl.firstChild;
+        first.style.background = 'red';
+        // lastChild 最后一个子节点
+        var last = oUl.lastElementChild || oUl.lastChild;
+        last.style.background = 'yellow';
+        // nextSibling 下一个兄弟节点
+        var oNext = first.nextElementSibling || nextSibling;
+        oNext.style.background = 'green';
+        // previousSibling 上一个兄弟节点
+        var oPrev = last.previousElementSibling || previousSibling;
+        oPrev.style.background = 'blue';
+        // IE9之前firstChild获取的是元素节点，IE9之后包括IE9变为firstElementChild，其他API一样。
+      }
+    </script>
+  </head>
+  <body>
+    <ul id="ul1">
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+      <li>444</li>
+    </ul>
+  </body>
+</html>
