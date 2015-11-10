@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>添加移除Class</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv1 = document.getElementById('div1');
+                var oDiv2 = document.getElementById('div2');
+
+                addClass(oDiv1, 'box1');
+                // 添加class方法
+                function addClass(obj, className) {
+                    // 如果obj.className不存在直接添加
+                    if (obj.className == '') {
+                        obj.className = className;
+                    } else {
+                        //如果className存在并没有要添加的class才添加，否则什么都不做
+                        var index = indexOfArray(obj.className.split(' '), className);
+                        if (index == -1) {
+                            obj.className += ' ' + className;
+                        }
+                    }
+
+                }
+
+                removeClass(oDiv2, 'box5');
+
+                // 移除class
+                function removeClass(obj, className) {
+                    // 如果obj.className不存在
+                    if (obj.className == '') {
+                        return;
+                    } else {
+                        // 如果obj.className存在并包含className则删除，否则什么都不做
+                        var arrClassName = obj.className.split(' ');
+                        var index = indexOfArray(arrClassName, className);
+                        if (index != -1) {
+                            arrClassName.splice(index, 1);
+                            obj.className = arrClassName.join(' ');
+                        }
+                    }
+                }
+
+                // 判断某个值是否在数组中存在，存在返回索引
+                function indexOfArray(arr, v) {
+                    for (var i = 0; i < arr.length; i++) {
+                        if (arr[i] == v) {
+                            return i;
+                        }
+                    }
+                    return -1;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1" class="box">div1</div>
+        <div id="div2" class="box box2 box3">div2</div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>父节点操作-offsetParent</title>
+        <style media="screen">
+            div {padding: 40px}
+            #div1 {
+                background-color: red;
+            }
+            #div2 {
+                background-color: green;
+                position: relative;
+            }
+            #div3 {
+                background-color: orange;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv3 = document.getElementById('div3');
+
+                console.log(getPos(oDiv3));
+                // 封装了一个方法获取元素到可视区的绝对位置
+                function getPos(obj) {
+                    var pos = {left: 0, top: 0};
+                    while(obj) {
+                        pos.left += obj.offsetLeft;
+                        pos.top += obj.offsetTop;
+                        obj = obj.offsetParent;
+                    }
+                    return pos;
+                }
+            }
+        </script>
+    </head>
+    <body id="body1">
+        <div id="div1">
+            <div id="div2">
+                <div id="div3"></div>
+            </div>
+        </div>
+    </body>
+</html>

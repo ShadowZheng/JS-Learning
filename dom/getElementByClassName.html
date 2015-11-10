@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>通过类名获取元素</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var arr = getElementsByClassName('ul2', 'li','box');
+
+                for (var x = 0; x < arr.length; x++) {
+                    arr[x].style.background = 'red';
+                }
+
+                // getElementsByClassName(父元素Id,要找的标签名，类名)
+                function getElementsByClassName(parent, tagName, className) {
+                    var all = document.getElementById(parent).getElementsByTagName(tagName);
+                    var arr = [];
+                    for (var i = 0; i < all.length; i++) {
+                        var classNames = all[i].className.split(' ');
+                        for (var j = 0; j < classNames.length; j++) {
+                            if (classNames[j] == className) {
+                                arr.push(all[j]);
+                                break;
+                            }
+                        }
+                    }
+                    return arr;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <ul id="ul1">
+            <li>111</li>
+            <li class="box">222</li>
+            <li>333</li>
+            <li class="box">444</li>
+        </ul>
+        <ul id="ul2">
+            <li>111</li>
+            <li class="box">222</li>
+            <li>333</li>
+            <li class="box">444</li>
+        </ul>
+        <p class="box">pppppp</p>
+    </body>
+</html>

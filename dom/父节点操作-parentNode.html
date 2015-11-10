@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>父节点操作-parentNode</title>
+    <script type="text/javascript">
+      window.onload = function() {
+          var oAs = document.getElementsByTagName('a');
+
+          for (var i = 0; i < oAs.length; i++) {
+              oAs[i].onclick = function() {
+                  this.parentNode.style.display = 'none';
+              }
+          }
+          // 值得一提的是parentNode不存在兼容性问题，可以放心的用
+      }
+    </script>
+  </head>
+  <body>
+    <ul id="ul1">
+        <li>111<a href="javascript:;">隐藏</a></li>
+        <li>222<a href="javascript:;">隐藏</a></li>
+        <li>333<a href="javascript:;">隐藏</a></li>
+        <li>444<a href="javascript:;">隐藏</a></li>
+    </ul>
+  </body>
+</html>

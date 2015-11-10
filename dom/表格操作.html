@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表格操作</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oTab = document.getElementById('tab');
+                /*
+                    表格操作的属性
+                    tHead : 表头
+                    tBodies : 表正文
+                    tFoot : 表尾
+                        rows : 行
+                        cells : 列
+                */
+                var data = [
+                    {id:1, name:'andy1', sex:'男'},
+                    {id:2, name:'andy2', sex:'男'},
+                    {id:3, name:'andy3', sex:'女'},
+                    {id:4, name:'andy4', sex:'男'},
+                ];
+
+                for (var i = 0; i < data.length; i++) {
+                    var oTr = document.createElement('tr');
+                    // 隔行换色
+                    if (i % 2 == 0) {
+                        oTr.style.background = '#ccc';
+                    }
+                    var oTd = document.createElement('td');
+                    oTd.innerHTML = data[i].id;
+                    oTr.appendChild(oTd);
+                    var oTd = document.createElement('td');
+                    oTd.innerHTML = data[i].name;
+                    oTr.appendChild(oTd);
+                    var oTd = document.createElement('td');
+                    oTd.innerHTML = data[i].sex;
+                    oTr.appendChild(oTd);
+                    var oTd = document.createElement('td');
+                    var oA = document.createElement('a');
+                    oA.href = 'javascript:;';
+                    oA.innerHTML = '删除';
+                    oA.onclick = function() {
+                        oTab.tBodies[0].removeChild(this.parentNode.parentNode);
+                    }
+                    oTd.appendChild(oA);
+                    oTr.appendChild(oTd);
+                    oTab.tBodies[0].appendChild(oTr);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <table id="tab">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>窗口尺寸大小</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var clientWidth = document.documentElement.clientWidth; // 可视区的宽
+                var clientHeight = document.documentElement.clientHeight; // 可视区的高
+                // alert(clientWidth + ',' + clientHeight);
+                // 滚动距离具有兼容问题，FF中取得的是documentElement的，IE和火狐取的是body的
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; // 可视区的垂直滚动距离
+                var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft; // 可视区的水平滚动距离
+                // alert(scrollTop + ',' + scrollLeft);
+                //内容高度：
+                var oDiv1 = document.getElementById('div1');
+                // alert(oDiv1.scrollHeight);
+                // 文档高度
+                alert(document.documentElement.offsetHeight);
+            }
+        </script>
+    </head>
+    <body style="width: 2000px; height: 2000px;">
+        <div id="div1" style="width: 100px; height: 100px; border: 1px solid red; padding: 10px;">
+            <div id="div2" style="width:80px; height: 160px; background:blue;"></div>
+        </div>
+    </body>
+</html>

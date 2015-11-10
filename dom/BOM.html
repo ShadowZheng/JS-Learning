@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>BOM介绍</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oBtn1 = document.getElementById('btn1');
+                var newWin;
+                oBtn1.onclick = function() {
+                    /* BOM: Browser Object Model 浏览器对象模型
+                        open(url, 打开窗口方式) 打开一个新的窗口,返回一个新窗口的window对象
+                        如果打开窗口方式为空，就是新窗口打开
+                    */
+                    newWin = window.open();
+                    newWin.document.body.style.background = 'red';
+                }
+                var oBtn2 = document.getElementById('btn2');
+                oBtn2.onclick = function() {
+                    // close关闭窗口，兼容性不是很好，FF不允许关闭，IE会弹出提示框
+                    newWin.close();
+                }
+
+                /* BOM还有一些属性：
+                    window.navigator.userAgent  --> 浏览器信息
+                    window.location  --> 浏览器地址信息
+                    window.location.href --> url
+                    window.location.hash --> url#后面的内容
+                    window.location.search --> url?后面的内容
+                */
+                var oBtn3 = document.getElementById('btn3');
+                oBtn3.onclick = function() {
+                    if (window.navigator.userAgent.indexOf('MSIE') != -1) {
+                        alert('我是IE浏览器');
+                    } else {
+                        alert('我不是IE');
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" id="btn1" value="打开新窗口">
+        <input type="button" id="btn2" value="关闭新窗口">
+        <input type="button" id="btn3" value="判断浏览器">
+    </body>
+</html>

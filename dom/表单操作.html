@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单操作</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oForm = document.getElementById('form1');
+                // 表单可以直接通过表单元素的name直接访问
+                oForm.text1.onchange = function() {
+                    alert(this.value);
+                }
+
+                oForm.sex[0].onchange = function() {
+                    alert(this.checked);
+                }
+
+                oForm.select1.onchange = function() {
+                    alert(this.value);
+                }
+
+                oForm.btn.onclick = function() {
+                    for (var i = 0; i < oForm.sex.length; i++) {
+                        if (oForm.sex[i].checked) {
+                            alert(oForm.sex[i].value + '被选中了')
+                        } else {
+                            alert(oForm.sex[i].value + '没有被选中')
+                        }
+                    }
+
+                    for (var i = 0; i < oForm.a.length; i++) {
+                        if (oForm.a[i].checked) {
+                            alert(oForm.a[i].value + '被选中了')
+                        } else {
+                            alert(oForm.a[i].value + '没有被选中')
+                        }
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <form id="form1">
+            <input type="text" name="text1" id="text1" />
+
+            <input type="radio" name="sex" value="男" checked>男
+            <input type="radio" name="sex" value="女">女
+
+            <input type="checkbox" name="a" value="html">html
+            <input type="checkbox" name="a" value="css">css
+            <input type="checkbox" name="a" value="js">js
+
+            <select id="select" name="select1">
+                <option value="0">请选择...</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="西安">西安</option>
+            </select>
+
+            <input type="button" name="btn" value="测试">
+        </form>
+    </body>
+</html>

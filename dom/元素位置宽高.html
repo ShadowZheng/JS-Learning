@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>元素位置宽高</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv1 = document.getElementById('div1');
+
+                // width，height 样式宽度高度
+                alert(oDiv1.style.width + ',' + oDiv1.style.height);
+                // clientWidth, clientHeight = 样式宽 + padding值
+                alert(oDiv1.clientWidth + ',' + oDiv1.clientHeight);
+                // offsetWidth, offsetHeight = 样式宽 + padding值 + border值
+                alert(oDiv1.offsetWidth + ',' + oDiv1.offsetHeight);
+                // offsetLeft, offsetTop 指的是到最近定位元素的偏移量，没有定位元素默认为body
+                alert(oDiv1.offsetLeft + ',' + oDiv1.offsetTop);
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1" style="width: 100px; height: 120px; padding: 10px 5px; border: 1px solid #ccc;"></div>
+    </body>
+</html>

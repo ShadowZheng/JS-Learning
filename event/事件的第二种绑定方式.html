@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>事件绑定的第二种方式</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                function f1() {
+                    alert(1);
+                }
+                function f2() {
+                    alert(2);
+                }
+                /*
+                IE: obj.attachEvent(事件名称，事件函数);
+                    1. 没有事件捕获。
+                    2. 事件名称有on
+                    3. 事件函数执行顺序： 标准IE模式 正序， 非标准IE 反序
+                    4. 事件函数中this指向是window
+                标准浏览器：obj.addEventListener(事件名称，事件函数，是否捕获) 是否捕获默认false: 冒泡， true: 捕获
+                    1. 有捕获
+                    2. 事件名称没有on
+                    3. 事件执行顺序是正序
+                    4. this指向obj
+                */
+
+                // document.attachEvent('onclick', f1);
+                // document.attachEvent('onclick', f2);
+                bind(document, 'click', f1);
+                bind(document, 'click', f2);
+                // 为了兼容IE和标准浏览器可以封装一个方法来绑定方法
+                function bind(obj, eventName, fn) {
+                    if (obj.addEventListener) {
+                        obj.addEventListener(eventName, fn, false);
+                    } else {
+                        obj.attachEvent('on' + eventName, function() {
+                            fn.call(obj);
+                        });
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

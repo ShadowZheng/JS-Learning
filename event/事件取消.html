@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>事件取消</title>
+        <script type="text/javascript">
+            window.onload = function() {
+                function fn1() {
+                    alert(1);
+                }
+                function fn2() {
+                    alert(2);
+                }
+                // 事件取消第一种方式
+                document.onclick = fn1;
+                document.onclick = null;
+                // 事件取消第二种方式
+                document.addEventListener('click', fn1, false); // 绑定事件冒泡的事件
+                document.removeEventListener('click', fn1, false); // 解除绑定的事件冒泡的事件 
+                document.addEventListener('click', fn2, true);// 绑定事件捕获的事件
+                document.removeEventListener('click', fn2, true); // 解除绑定的事件捕获的事件
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
