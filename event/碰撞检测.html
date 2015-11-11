@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>碰撞检测</title>
+        <style>
+            #div1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                position: absolute;
+            }
+            #div2 {
+                width: 200px;
+                height: 200px;
+                background-color: blue;
+                position:absolute;
+                top: calc(50% - 100px);
+                left: calc(50% - 100px);
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv = document.getElementById('div1');
+                var oDiv2 = document.getElementById('div2');
+
+                oDiv.onmousedown = function(ev) {
+                    var e = ev || event;
+                    var disX = e.clientX - this.offsetLeft;
+                    var disY = e.clientY - this.offsetTop;
+                    /*IE：如果浏览器有文字被选中，文字可以被拖拽的默认行为可能为影响oDiv的拖拽行为
+                    标准浏览器： 文字被选中的拖拽行为不会影响
+                    我们为了消除IE下的影响，可以利用全局捕获来让浏览器直接执行oDiv的拖拽事件，而不去管文字的拖拽
+                    全局捕获：IE有，FF和Chrome没有
+                    */
+                    if (oDiv.setCapture) {
+                        oDiv.setCapture();
+                    }
+
+                    /* 首先这里onmousemove和onmouseup事件应该是在onmousedown里面绑定的
+                    为什么绑定在document上是因为防止用户拖拽的速度过快鼠标移出DIV后引起的拖拽异常。
+                    */
+                    document.onmousemove = function(ev) {
+                        var e = ev || event;
+                        var l = e.clientX - disX;
+                        var t = e.clientY - disY;
+                        /*
+                            这里如果设置l < 固定距离，就会看到类似磁性吸附的效果，可以加上动态效果看起来更自然
+                        */
+                        if (l < 0) {
+                            l = 0;
+                        }
+                        var maxLeft = document.documentElement.clientWidth - oDiv.offsetWidth;
+                        if (l > maxLeft) {
+                            l = maxLeft;
+                        }
+
+                        if (t < 0) {
+                            t = 0;
+                        }
+                        var maxTop = document.documentElement.clientHeight - oDiv.offsetHeight;
+                        if (t > maxTop) {
+                            t = maxTop;
+                        }
+
+                        /*
+                            碰撞检测原理其实就是利用九宫格原理判断两个块是否接触
+                        */
+                        var l1 = l;
+                        var r1 = l + oDiv.offsetWidth;
+                        var t1 = t;
+                        var b1 = t + oDiv.offsetHeight;
+
+                        var l2 = oDiv2.offsetLeft;
+                        var r2 = l2 + oDiv2.offsetWidth;
+                        var t2 = oDiv2.offsetTop;
+                        var b2 = t2 + oDiv2.offsetHeight;
+
+                        if (r1 < l2 || l1 > r2 || t1 > b2 || b1 < t2) {
+                            oDiv2.style.background = 'blue';
+                        } else {
+                            oDiv2.style.background = 'red';
+                        }
+
+                        oDiv.style.left = l + 'px';
+                        oDiv.style.top = t + 'px';
+                    }
+                    // onmouseup中仅把onmousemove和自己移出
+                    document.onmouseup = function() {
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                        // 当鼠标抬起后不再需要全局捕获可以释放全局捕获
+                        if (oDiv.releaseCapture) {
+                            oDiv.releaseCapture();
+                        }
+                    }
+
+                    //防止低版本FF浏览器中其他元素拖拽影响的bug
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1"></div>
+        <div id="div2"></div>
+    </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>拖拽</title>
+        <style>
+            #div1 {
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                position: absolute;
+                left: calc(50% - 100px);
+                top: calc(50% - 100px);
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                var oDiv = document.getElementById('div1');
+                oDiv.onmousedown = function(ev) {
+                    var e = ev || event;
+                    var x = e.clientX; // 鼠标按下去的x坐标
+                    var y = e.clientY; // 鼠标按下去的y坐标
+                    var w = oDiv.offsetWidth;// 原始宽度
+                    var h = oDiv.offsetHeight;// 原始高度
+                    var l = this.offsetLeft; // 原始左偏移量
+                    var t = this.offsetTop; // 原始上偏移量
+                    var disX = x - l;
+                    var disY = y - t;
+                    var direct = '';
+                    if (disX <= 10) {
+                        direct = 'left';
+                    } else if (disY <= 10) {
+                        direct = 'top';
+                    } else if (disX >= w - 10) {
+                        direct = 'right';
+                    } else if (disY >= h - 10) {
+                        direct = 'bottom';
+                    }
+                    document.onmousemove = function(ev) {
+                        var e = ev || event;
+                        switch (direct) {
+                            case 'left':
+                                oDiv.style.width = w - (e.clientX - x) + 'px';
+                                oDiv.style.left = l + (e.clientX - x) + 'px';
+                                break;
+                            case 'right':
+                                oDiv.style.width = w + (e.clientX - x) + 'px';
+                                break;
+                            case 'top':
+                                oDiv.style.height = h - (e.clientY - y) + 'px';
+                                oDiv.style.top = t + (e.clientY - y) + 'px';
+                                break;
+                            case 'bottom':
+                                oDiv.style.height = h + (e.clientY - y) + 'px';
+                                break;
+                            default:
+
+                        }
+                    }
+                    document.onmouseup = function() {
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1"></div>
+    </body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            #div1 {
+                height: 800px;
+                width: 50px;
+                position: relative;
+                background-color: #ccc;
+                float:left;
+            }
+            #div2 {
+                width: 50px;
+                height: 100px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #646464;
+            }
+            #div3 {
+                width: 500px;
+                height: 800px;
+                position: relative;
+                left: 10px;
+                background-color: #558c54;
+                overflow: hidden;
+            }
+            #div4 {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                oDiv1 = document.getElementById('div1');
+                oDiv2 = document.getElementById('div2');
+                oDiv3 = document.getElementById('div3');
+                oDiv4 = document.getElementById('div4');
+                oDiv2.onmousedown = function(ev) {
+                    var e = ev || event;
+                    var disY = e.clientY;
+                    document.onmousemove = function(ev) {
+                        var e = ev || event;
+                        var t = e.clientY - disY;
+                        var maxTop = oDiv1.offsetHeight - oDiv2.offsetHeight;
+                        if (t < 0) {
+                            t = 0;
+                        } else if (t > maxTop) {
+                            t = maxTop;
+                        }
+                        oDiv2.style.top = t + 'px';
+
+                        // 当滚动条滚动的时候div4内容跟着滚动 公式：滚动轴偏移量/滚动轴最大偏移量 = 滚动内容偏移量/ 滚动内容最大偏移量
+                        var contentOffsetX = (t / maxTop) * (oDiv3.offsetHeight - oDiv4.offsetHeight);
+                        oDiv4.style.top = contentOffsetX + 'px';
+                    }
+                    document.onmouseup = function() {
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="div1">
+            <div id="div2"></div>
+        </div>
+        <div id="div3">
+            <div id="div4">
+                Skip to main content
+LinkedIn Find People, Jobs, Companies, and MoreSearch for:
+All
+
+Search for people, jobs, companies, and more...
+ SearchAdvanced
+Inbox. You have 0 new messages
+Inbox Menu. Press Enter and then use the Tab key to move through and hear the Inbox menu options.
+Notifications. You have 0 unseen notifications
+Notifications Menu. Press Enter and then use the Tab key to move through and hear the Notifications menu options.
+Add Connections
+Add Connections Menu. Press Enter and then use the Tab key to move through and hear the Connections menu options. 1
+Andy Zheng
+Account Menu. Press Enter and then use the Tab key to move through and hear the Account menu options.
+Home
+Profile
+Profile Menu. Press Enter and then use the Tab key to move through and hear the Profile menu options.
+Connections
+Connections Menu. Press Enter and then use the Tab key to move through and hear the Connections menu options.
+Jobs
+Interests
+Interests Menu. Press Enter and then use the Tab key to move through and hear the Interests menu options.
+Business Services
+Business Services Menu. Press Enter and then use the Tab key to move through and hear the Business Services menu options.
+Try Premium
+
+Profile Activity
+Andy Zheng
+Andy Zheng
+Front End Developer, Objectiva Software Solutions, Inc.
+Improve your profile
+6people viewed your profile in the past 15 days
+87connections. Grow your network
+Update Status
+Share an update
+Upload a photo
+Publish a post
+What's on your mind?
+What's on your mind?
+
+Upload a photo
+
+Share
+Network Updates
+11 new updates
+
+mark xu
+Options2h
+mark xu is now following:
+Bill Sun
+Follow
+Bill Sun
+Senior Director at JD.COM 京东
+Stanford Residences
+Follow
+Stanford Residences shared:
+Sponsored
+#Best Serviced Apartment! Our AIM and we need your support# Click this Time Out link and vote Stanford Residences Jing An in “best serviced apartment” category. Take a quick picture, scan the QR code and send to Stanford Residences… show more
+qrcode_for_gh_d8b0e6416e8a_258.jpg
+LikeLike Stanford Residences&#39;s postCommentcomment on Stanford Residences&#39;s postShare share Stanford Residences&#39;s post1818 people like this.
+Wilson Yu
+Wilson Yu is now following:
+Kaiwen Huang
+Kaiwen Huang
+Global Supply Chain Manager at Apple
+Follow
+Mitchell Yang
+Mitchell Yang
+Procurement Sr. Manager
+Follow
+Helen C.
+Options3h
+Helen C. likes this
+Neo Sun
+Neo Sun
+Project Manager, Advisory IT specialist at IBM
+IBM is a great team to work for. Check out this job! http://rfer.us/IBEJD-1VMx
+http://rfer.us/IBEJD-1VMx
+http://rfer.us/IBEJD-1VMx
+rfer.us
+LikeLike Helen C.&#39;s postCommentcomment on Helen C.&#39;s postShare share Helen C.&#39;s post22 people like this.
+SANTI KUMAR RAY
+Options4h
+SANTI KUMAR RAY likes this
+اینفوگرافیک - سه مولفه کلیدی بازاریابی خدمات درمانی در فضای آنلاین
+اینفوگرافیک - سه مولفه کلیدی بازاریابی خدمات درمانی در فضای آنلاین
+آینده نگاران سی‌سرو on LinkedInهمانطور که در پست های قبل مشاهده نمودید (ده دلیل اهمیت بازاریابی دیجیتال در حوزه خدمات درمانی قسمت اول و&nb…
+LikeLike SANTI KUMAR RAY&#39;s postCommentcomment on SANTI KUMAR RAY&#39;s postShare share SANTI KUMAR RAY&#39;s post1414 people like this.11 comment.
+Soroosh Pardaz1dSoroosh Pardazمرسی خیلی جالب بود
+
+Add a comment...
+
+See anyone you know? Connect with them
+vanboss kylin
+vanboss kylin
+Adminisrator , S.r project manager at Digao sofware
+Connect
+cici liu
+cici liu
+QA at Xi'An Objectiva Software Solutions
+Connect
+Kun Dong
+Kun Dong
+--
+Connect
+Find more people you know
+People in your network have new connections
+22s
+tongme wan is now connected with:
+Tony ZhangConnect
+Tony Zhang
+Sales Engineer — Shenzhen INVT Electric Co.,Ltd.
+3m
+Cathy Chen is now connected with:
+wu alimoeConnect
+wu alimoe
+Client software Engineer at Tencent
+Show more updates
+Wilson Yu
+Options3h
+Wilson Yu commented on this
+Wilson Yu
+Wilson Yu
+Human Capital Consultant - eHunting Human Capital
+以前面试过不少应届毕业生，大部分告诉我，毕业前学校教他们，找工作要骑驴找马，先找个坑干着，然后再跳槽，很多在一年内换过几份工作。同企业沟通，基本都对应届生不太抱期望。十几年后今天我还在想，当年的应届生，今天的精英们，这个到底是事实还是错觉呢？当时也忘了问，学校帮助大家做职业规划了吗？
+LikeLike Wilson Yu&#39;s postCommentcomment on Wilson Yu&#39;s postShare share Wilson Yu&#39;s post1515 people like this.3131 comments.
+Show previous comments
+Abory Zhang9hAbory Zhang社会对学生的需求谁说的准？甚至能说清楚未来几年的需求？各个公司的HR虽然不一定能说准，但应该没有比他们更准的。所以这个东西要最终有价值，应该是一个大型的平台，能吸引HR和学生。对HR，他的诉求应该是面向未来的资源储备，雇主品牌营造，个人影响力提升等。对学生就是职业规划，实习，提前热身。这… show more
+Wilson Yu3hWilson Yu现在大学的实习体系已经相比进步很多，学生在正式毕业前有将近一年的实习期，他们可以通过这段时间适应社会，而想继续在学术上深造的学生可以选择待在实验室，对大家都公平。骑驴找马我感觉还是普遍现象，也许现在不仅仅是学校的问题，学校和社会的引导，学生自己意识到重要性，才能让学生正确选择职业生涯的路… show more
+
+Add a comment...
+
+Jake liu
+Jake liu is now following:
+Will Chung
+Will Chung
+Managing Director, China Everbright Asset Management
+Follow
+Brian A. Wong
+Brian A. Wong
+Vice President, Alibaba Group
+Follow
+Mike Chen
+Mike Chen
+CEO, Managing Director, China Everbright Bank Hong Kong Branch
+Follow
+Stay in touch with your network
+4	ways to keep in touch
+Sally QIN
+Sally QIN has a work anniversary.
+Celebrating 5 years at Oracle
+Like
+Comment
+Skip
+
+3	ways to keep in touch
+Dong Yang
+Like
+Comment
+Skip
+
+2	ways to keep in touch
+贺宏伟
+
+1	way to keep in touch
+isaac zhang
+
+All caught up!
+Now check out some people you may want to connect with.
+
+AboutFeedbackPrivacy & Terms
+LinkedIn Corp. © 2015
+Skip to main content
+LinkedIn Find People, Jobs, Companies, and MoreSearch for:
+All
+
+Search for people, jobs, companies, and more...
+ SearchAdvanced
+Inbox. You have 0 new messages
+Inbox Menu. Press Enter and then use the Tab key to move through and hear the Inbox menu options.
+Notifications. You have 0 unseen notifications
+Notifications Menu. Press Enter and then use the Tab key to move through and hear the Notifications menu options.
+Add Connections
+Add Connections Menu. Press Enter and then use the Tab key to move through and hear the Connections menu options. 1
+Andy Zheng
+Account Menu. Press Enter and then use the Tab key to move through and hear the Account menu options.
+Home
+Profile
+Profile Menu. Press Enter and then use the Tab key to move through and hear the Profile menu options.
+Connections
+Connections Menu. Press Enter and then use the Tab key to move through and hear the Connections menu options.
+Jobs
+Interests
+Interests Menu. Press Enter and then use the Tab key to move through and hear the Interests menu options.
+Business Services
+Business Services Menu. Press Enter and then use the Tab key to move through and hear the Business Services menu options.
+Try Premium
+
+Profile Activity
+Andy Zheng
+Andy Zheng
+Front End Developer, Objectiva Software Solutions, Inc.
+Improve your profile
+6people viewed your profile in the past 15 days
+87connections. Grow your network
+Update Status
+Share an update
+Upload a photo
+Publish a post
+What's on your mind?
+What's on your mind?
+
+Upload a photo
+
+Share
+Network Updates
+11 new updates
+
+mark xu
+Options2h
+mark xu is now following:
+Bill Sun
+Follow
+Bill Sun
+Senior Director at JD.COM 京东
+Stanford Residences
+Follow
+Stanford Residences shared:
+Sponsored
+#Best Serviced Apartment! Our AIM and we need your support# Click this Time Out link and vote Stanford Residences Jing An in “best serviced apartment” category. Take a quick picture, scan the QR code and send to Stanford Residences… show more
+qrcode_for_gh_d8b0e6416e8a_258.jpg
+LikeLike Stanford Residences&#39;s postCommentcomment on Stanford Residences&#39;s postShare share Stanford Residences&#39;s post1818 people like this.
+Wilson Yu
+Wilson Yu is now following:
+Kaiwen Huang
+Kaiwen Huang
+Global Supply Chain Manager at Apple
+Follow
+Mitchell Yang
+Mitchell Yang
+Procurement Sr. Manager
+Follow
+Helen C.
+Options3h
+Helen C. likes this
+Neo Sun
+Neo Sun
+Project Manager, Advisory IT specialist at IBM
+IBM is a great team to work for. Check out this job! http://rfer.us/IBEJD-1VMx
+http://rfer.us/IBEJD-1VMx
+http://rfer.us/IBEJD-1VMx
+rfer.us
+LikeLike Helen C.&#39;s postCommentcomment on Helen C.&#39;s postShare share Helen C.&#39;s post22 people like this.
+SANTI KUMAR RAY
+Options4h
+SANTI KUMAR RAY likes this
+اینفوگرافیک - سه مولفه کلیدی بازاریابی خدمات درمانی در فضای آنلاین
+اینفوگرافیک - سه مولفه کلیدی بازاریابی خدمات درمانی در فضای آنلاین
+آینده نگاران سی‌سرو on LinkedInهمانطور که در پست های قبل مشاهده نمودید (ده دلیل اهمیت بازاریابی دیجیتال در حوزه خدمات درمانی قسمت اول و&nb…
+LikeLike SANTI KUMAR RAY&#39;s postCommentcomment on SANTI KUMAR RAY&#39;s postShare share SANTI KUMAR RAY&#39;s post1414 people like this.11 comment.
+Soroosh Pardaz1dSoroosh Pardazمرسی خیلی جالب بود
+
+Add a comment...
+
+See anyone you know? Connect with them
+vanboss kylin
+vanboss kylin
+Adminisrator , S.r project manager at Digao sofware
+Connect
+cici liu
+cici liu
+QA at Xi'An Objectiva Software Solutions
+Connect
+Kun Dong
+Kun Dong
+--
+Connect
+Find more people you know
+People in your network have new connections
+22s
+tongme wan is now connected with:
+Tony ZhangConnect
+Tony Zhang
+Sales Engineer — Shenzhen INVT Electric Co.,Ltd.
+3m
+Cathy Chen is now connected with:
+wu alimoeConnect
+wu alimoe
+Client software Engineer at Tencent
+Show more updates
+Wilson Yu
+Options3h
+Wilson Yu commented on this
+Wilson Yu
+Wilson Yu
+Human Capital Consultant - eHunting Human Capital
+以前面试过不少应届毕业生，大部分告诉我，毕业前学校教他们，找工作要骑驴找马，先找个坑干着，然后再跳槽，很多在一年内换过几份工作。同企业沟通，基本都对应届生不太抱期望。十几年后今天我还在想，当年的应届生，今天的精英们，这个到底是事实还是错觉呢？当时也忘了问，学校帮助大家做职业规划了吗？
+LikeLike Wilson Yu&#39;s postCommentcomment on Wilson Yu&#39;s postShare share Wilson Yu&#39;s post1515 people like this.3131 comments.
+Show previous comments
+Abory Zhang9hAbory Zhang社会对学生的需求谁说的准？甚至能说清楚未来几年的需求？各个公司的HR虽然不一定能说准，但应该没有比他们更准的。所以这个东西要最终有价值，应该是一个大型的平台，能吸引HR和学生。对HR，他的诉求应该是面向未来的资源储备，雇主品牌营造，个人影响力提升等。对学生就是职业规划，实习，提前热身。这… show more
+Wilson Yu3hWilson Yu现在大学的实习体系已经相比进步很多，学生在正式毕业前有将近一年的实习期，他们可以通过这段时间适应社会，而想继续在学术上深造的学生可以选择待在实验室，对大家都公平。骑驴找马我感觉还是普遍现象，也许现在不仅仅是学校的问题，学校和社会的引导，学生自己意识到重要性，才能让学生正确选择职业生涯的路… show more
+
+Add a comment...
+
+Jake liu
+Jake liu is now following:
+Will Chung
+Will Chung
+Managing Director, China Everbright Asset Management
+Follow
+Brian A. Wong
+Brian A. Wong
+Vice President, Alibaba Group
+Follow
+Mike Chen
+Mike Chen
+CEO, Managing Director, China Everbright Bank Hong Kong Branch
+Follow
+Stay in touch with your network
+4	ways to keep in touch
+Sally QIN
+Sally QIN has a work anniversary.
+Celebrating 5 years at Oracle
+Like
+Comment
+Skip
+
+3	ways to keep in touch
+Dong Yang
+Like
+Comment
+Skip
+
+2	ways to keep in touch
+贺宏伟
+
+1	way to keep in touch
+isaac zhang
+
+All caught up!
+Now check out some people you may want to connect with.
+
+AboutFeedbackPrivacy & Terms
+LinkedIn Corp. © 2015
+            </div>
+        </div>
+    </body>
+</html>

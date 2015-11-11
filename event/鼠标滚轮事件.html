@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>鼠标滚轮事件</title>
+        <style media="screen">
+            #div1 {
+                width: 200px;
+                height: 200px;
+                background-color: red;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function() {
+                /*鼠标滚轮事件：
+                    IE/Chrome : onmousewheel
+                        event.wheelDelta判断上下
+                        上：120
+                        下：-120
+                    Firefox: DOMMouseScroll 而且必须用addEventListener进行绑定
+                        event.detail 判断上下
+                        上：-3
+                        下：3
+                */
+                var oDiv = document.getElementById('div1');
+                oDiv.onmousewheel = fn;
+                // 火狐需要另外处理
+                if (oDiv.addEventListener) {
+                    oDiv.addEventListener('DOMMouseScroll', fn, false);
+                }
+                function fn(ev) {
+                    var e = ev || event;
+                    // 为了兼容火狐的滚动事件判断上下方向
+                    var b = true;
+                    if (e.wheelDelta) {
+                        b = e.wheelDelta > 0;
+                    } else {
+                        b = e.detail < 0;
+                    }
+                    if (b) {
+                        this.style.height = this.offsetHeight - 10 + 'px';
+                    } else {
+                        this.style.height = this.offsetHeight + 10 + 'px';
+                    }
+                    // 如果浏览器有滚动条，需要组织浏览器默认行为
+                    if (e.preventDefault) {
+                        // 如果是用addEventListener绑定的方法必须用preventDefault阻止事件默认行为
+                        e.preventDefault();
+                    }
+                    // return false 只能阻止 obj.on事件名称 = fn 这种形式的事件默认行为
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body style="height: 2000px;">
+        <div id="div1"></div>
+    </body>
+</html>

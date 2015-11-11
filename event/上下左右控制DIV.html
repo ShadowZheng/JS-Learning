@@ -15,26 +15,63 @@
     <script type="text/javascript">
         window.onload = function() {
             var oDiv = document.getElementById('div1');
+            var dLeft = dTop = dRight = dBottom = false;
+            var speed = 15;
+            // 通过定时器来控制是否走动
+            setInterval(function() {
+                if (dLeft) {
+                    oDiv.style.left = oDiv.offsetLeft - speed + 'px';
+                } else if (dRight) {
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                } else if (dTop) {
+                    oDiv.style.top = oDiv.offsetTop - speed + 'px';
+                } else if (dBottom) {
+                    oDiv.style.top = oDiv.offsetTop + speed + 'px';
+                }
+            }, 30);
 
             document.onkeydown = function(ev) {
                 var e = ev || event;
-                var speed = 10;
                 switch (e.keyCode) {
                     // 左 -> 37
                     case 37:
-                        oDiv.style.left = oDiv.offsetLeft - speed + 'px';
+                        dLeft = true;
                         break;
                     // 上 -> 38
                     case 38:
-                        oDiv.style.top = oDiv.offsetTop - speed + 'px';
+                        dTop = true;
                         break;
                     // 右 -> 39
                     case 39:
-                        oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                        dRight = true;
                         break;
                     // 下 -> 40
                     case 40:
-                        oDiv.style.top = oDiv.offsetTop + speed + 'px';
+                        dBottom = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            document.onkeyup = function(ev) {
+                var e = ev || event;
+                switch (e.keyCode) {
+                    // 左 -> 37
+                    case 37:
+                        dLeft = false;
+                        break;
+                    // 上 -> 38
+                    case 38:
+                        dTop = false;
+                        break;
+                    // 右 -> 39
+                    case 39:
+                        dRight = false;
+                        break;
+                    // 下 -> 40
+                    case 40:
+                        dBottom = false;
                         break;
                     default:
                         break;
