@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>苹果系统文件倒影</title>
+    <style media="screen">
+      html {
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        margin: 0;
+        background-color: #000;
+      }
+      #box {
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        /*perspective: 800px*/
+      }
+      #imgList {
+        position: absolute;
+        top: calc(50% - 200px);
+        /*transform-style: preserve-3d;*/
+        /*left: calc(50% -)*/
+      }
+      img {
+        width: 400px;
+        height: 270px;
+        position: absolute;
+      }
+      img:hover {
+        box-shadow: 0px 0px 10px 7px #ccc;
+        /*transition: 0.3s all ease;*/
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function() {
+        // 设置css
+        function setCss(obj, css) {
+          var arr = ['Webkit', 'Moz', 'O', 'ms', ''];
+          for (var attr in css) {
+            if (css.hasOwnProperty(attr)) {
+              if (attr.charAt(0) == '$') {
+                for (var i = 0; i < arr.length; i++) {
+                    obj.style[arr[i] + attr.substring(1)] = css[attr];
+                }
+              }
+              obj.style[attr] = css[attr];
+            }
+          }
+        }
+        var oBox = document.getElementById('box');
+        var imgList = document.getElementById('imgList');
+        var imgs = imgList.getElementsByTagName('img');
+
+        setCss(oBox,{$Perspective: '800px'});
+        var iLeft = -100;
+        var iStep = 100; // 每张图片的间距
+        var iListLeft = 0; // imgsList左偏移量
+        var iStarNow = 0; // 展示图片的索引
+        for (var i = 0; i < imgs.length; i++) {
+          // 取消图片默认行为
+          imgs[i].onmousedown = function() {
+            return false;
+          }
+          iLeft += iStep;
+          // 设置公共样式
+          setCss(imgs[i], {
+            $BoxReflect: 'below 0 -webkit-linear-gradient(top, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 100%)',
+            $Transition: '0.5s all ease'
+          });
+          if (i < Math.floor(imgs.length / 2)) {
+            setCss(imgs[i], {
+              left: iLeft + 'px',
+              $Transform: 'rotateY(45deg) translateZ(-100px)',
+            });
+          } else if (i > Math.floor(imgs.length / 2)) {
+            setCss(imgs[i], {
+              left: iLeft + 'px',
+              transform: 'rotateY(-45deg) translateZ(-100px)'
+            });
+          } else {
+            iLeft += iStep;
+            setCss(imgs[i], {
+              left: iLeft + 'px',
+              transform: 'translateZ(200px)'
+            });
+            iListLeft = document.documentElement.clientWidth / 2 - iLeft - imgs[i].offsetWidth / 2;
+            iLeft += iStep;
+            iStarNow = i;// 初始的时候iNow刚好等于中间值
+          }
+          imgs[i].index = i;
+          imgs[i].onclick = function() {
+            iLeft = -(this.index - iStarNow) * iStep;
+            renderImg(imgs, iLeft, iStep, this.index);
+          }
+        }
+        // 重新渲染图片样式
+        function renderImg(imgs, iLeft, iStep, iNow) {
+          iLeft-= iStep;
+          for (var i = 0; i < imgs.length; i++) {
+            iLeft += iStep;
+            // 设置公共样式
+            setCss(imgs[i], {
+              $BoxReflect: 'below 0 -webkit-linear-gradient(top, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 100%)',
+              $Transition: '0.5s all ease'
+            });
+            if (i < iNow) {
+              setCss(imgs[i], {
+                left: iLeft + 'px',
+                $Transform: 'rotateY(45deg) translateZ(-100px)',
+              })
+            } else if (i > iNow) {
+              setCss(imgs[i], {
+                left: iLeft + 'px',
+                transform: 'rotateY(-45deg) translateZ(-100px)'
+              })
+            } else {
+              iLeft += iStep;
+              setCss(imgs[i], {
+                left: iLeft + 'px',
+                transform: 'translateZ(200px)'
+              });
+              iLeft += iStep;
+            }
+          }
+        }
+        // 设置imglist的样式
+        setCss(imgList, {
+          left: iListLeft + 'px',
+          $TransformStyle: 'preserve-3d'
+        })
+      }
+    </script>
+  </head>
+  <body>
+    <div id="box">
+      <div id="imgList">
+          <img src="u1.jpg" alt="" />
+          <img src="u2.jpg" alt="" />
+          <img src="u3.jpg" alt="" />
+          <img src="u4.jpg" alt="" />
+          <img src="u5.jpg" alt="" />
+          <img src="u6.jpg" alt="" />
+          <img src="u7.jpg" alt="" />
+          <img src="u8.jpg" alt="" />
+          <img src="u9.jpg" alt="" />
+          <img src="u10.jpg" alt="" />
+          <img src="u11.jpg" alt="" />
+          <img src="u12.jpg" alt="" />
+          <img src="u13.jpg" alt="" />
+      </div>
+    </div>
+  </body>
+</html>

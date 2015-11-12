@@ -23,10 +23,34 @@
         height: 200px;
         /* 线性渐变： linear-gradient(起始方向，颜色节点（可以多个节点）) */
         background: -webkit-linear-gradient(top, red 0%, blue 100%);
+        background: -moz-linear-gradient(top, red 0%, blue 100%);
       }
       #img1 {
-        box-refleact: below 5px linear-gradient(top, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.6) 100%);
+        width: 400px;
+        /* 倒影： box-reflect: 倒影方向 倒影和参照物的距离
+          不过倒影仅支持webkit内核的浏览器，也就是说IE和FireFox不支持
+        */
+        -webkit-box-reflect: below 0 -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.8) 100%);
       }
+      #div3 {
+        /* 透视距离 */
+        perspective: 800px;
+        /* 建立3D空间 */
+        transform-style: preserve-3d;
+      }
+
+      #img2 {
+        width: 400px;
+        /* 变换：transform: 变换函数
+          可以让元素旋转、缩放、拉伸、3D旋转、透视等效果
+        */
+        transform: rotateY(0deg);
+        transition: 0.5s all ease;
+      }
+      #img2:hover {
+        transform: rotateY(60deg) translateZ(100px);
+      }
+
     </style>
   </head>
   <body>
@@ -38,5 +62,10 @@
     </div>
     <h3>倒影：box-reflect</h3>
     <img id="img1" src="u12.jpg" />
+    <h3 style="margin-top: 210px;">变换：transform</h3>
+    <div id="div3">
+      <img id="img2" src="u12.jpg" />
+    </div>
+
   </body>
 </html>

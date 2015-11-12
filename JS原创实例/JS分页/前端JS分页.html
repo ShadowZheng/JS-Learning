@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>前端JS分页</title>
+    <style media="screen">
+      a {
+        margin: 5px;
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function() {
+
+        page({
+          containerId: 'div1',
+          currentPage: 8,
+          pageSize: 10,
+          callback: function(now, all) {
+            alert('now:' + now + ', all:' + all);
+          }
+        });
+
+        function page(opt) {
+
+          opt.callback = opt.callback || function(){};
+
+          var pagination = document.getElementById(opt.containerId);
+          // 首页
+          if (opt.currentPage >=4 && opt.pageSize >= 6) {
+            var oA = document.createElement('a');
+            oA.href = '#1';
+            oA.innerHTML = '首页';
+            pagination.appendChild(oA);
+          }
+          //上一页
+          if (opt.currentPage > 1) {
+            var oA = document.createElement('a');
+            oA.href = '#' + (opt.currentPage - 1);
+            oA.innerHTML = '上一页';
+            pagination.appendChild(oA);
+          }
+
+          if (opt.pageSize <= 5) {
+            for (var i = 1; i <= opt.pageSize; i++) {
+              var oA = document.createElement('a');
+              oA.href = '#' + i;
+              if (i == opt.currentPage) {
+                oA.innerHTML = i;
+              } else {
+                oA.innerHTML = '[' + i + ']';
+              }
+              pagination.appendChild(oA);
+            }
+          } else {
+            for (var i = 1; i <= 5; i++) {
+              var oA = document.createElement('a');
+
+              if (opt.currentPage == 1 || opt.currentPage == 2) {
+                oA.href = '#' + i;
+                if (i == opt.currentPage) {
+                  oA.innerHTML = i;
+                } else {
+                  oA.innerHTML = '[' + i + ']';
+                }
+              } else if (opt.pageSize - opt.currentPage < 2) {
+                var currSize = opt.pageSize - 5 + i;
+                oA.href = '#' + currSize;
+                if (currSize == opt.currentPage) {
+                  oA.innerHTML = currSize;
+                } else {
+                  oA.innerHTML = '[' + currSize + ']';
+                }
+              } else {
+                var currHref = opt.currentPage - 3 + i;
+                oA.href = '#' + currHref;
+                if (currHref == opt.currentPage) {
+                  oA.innerHTML = currHref;
+                } else {
+                  oA.innerHTML = '[' + currHref + ']';
+                }
+              }
+              pagination.appendChild(oA);
+            }
+          }
+          // 下一页
+          if (opt.currentPage < opt.pageSize) {
+            var oA = document.createElement('a');
+            oA.href = '#' + (opt.currentPage + 1);
+            oA.innerHTML = '下一页';
+            pagination.appendChild(oA);
+          }
+          // 尾页
+          if (opt.pageSize - opt.currentPage > 2) {
+            var oA = document.createElement('a');
+            oA.href = '#' + opt.pageSize;
+            oA.innerHTML = '尾页';
+            pagination.appendChild(oA);
+          }
+
+          var links = pagination.getElementsByTagName('a');
+          for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function() {
+              pagination.innerHTML = '';
+              var currentPage = parseInt(this.getAttribute('href').substring(1));
+              page({
+                id: 'div1',
+                currentPage: currentPage,
+                pageSize: opt.pageSize
+              })
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="div1"></div>
+  </body>
+</html>
