@@ -603,9 +603,11 @@ body {
   height: 150px;
   padding-top: 32px;
   margin: 0 auto;
+  overflow: hidden;
 }
 .list-wrap ul {
   height: 150px;
+  position: relative;
 }
 .list-wrap li {
   width: 205px;
