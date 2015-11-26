@@ -96,6 +96,9 @@ body {
 .section,
 .side_section,
 .side_ad,
+.login,
+.activity,
+.rmd,
 #footer {
   border: 1px solid #dbdbdb;
   border-radius: 6px;
@@ -103,7 +106,9 @@ body {
 .section,
 .main_ad,
 .side_section,
-.side_ad {
+.side_ad,
+.activity,
+.rmd {
   margin-bottom: 10px;
 }
 
@@ -580,6 +585,69 @@ body {
   width: 66px;
 }
 
+.help {
+  height: 208px;
+
+}
+.help p {
+  text-indent: 2em;
+}
+.help ul {
+  border-bottom: 1px solid #dbdbdb;
+}
+.help li {
+  height: 43px;
+  line-height: 43px;
+  width: 154px;
+  text-indent: 30px;
+  font-family: arial;
+  background: url('../image/help.gif') no-repeat;
+}
+.help .phone {
+  font-size: 16px;
+  font-weight: bold;
+  color: #b80000;
+  background-position: 7px 13px;
+}
+.help .msn {
+  background-position: 7px -30px;
+}
+.help dl {
+  padding: 15px 0 0 10px;
+  width: 144px;
+}
+.help dt {
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+.help dd {
+  line-height: 18px;
+  text-indent: 14px;
+  background: url('../image/dot.gif') no-repeat 5px center;
+}
+.help dd a {
+  color: #333;
+}
+.help dd a:hover {
+  text-decoration: underline;
+}
+
+.media {
+  height: 205px;
+  padding-top: 3px;
+}
+.media li {
+  height: 50px;
+}
+.media a {
+  float: left;
+  width: 100px;
+}
+.media p {
+  float: right;
+  width: 208px;
+}
+
 .list-section {}
 .list-section li {
   height: 27px;
@@ -622,6 +690,34 @@ body {
 .list-section .headline span {
   color: #999;
 }
+.list-section img {
+  vertical-align: middle;
+}
+.soso {
+  height: 47px;
+  border-top: 1px dotted #dadada;
+  padding: 17px 0 0 10px;
+}
+.soso strong {
+  color: #595959;
+}
+.soso .text {
+  width: 172px;
+  height: 20px;
+  line-height: 20px;
+  text-indent: 4px;
+  border: 1px solid #9c9c9c;
+  color: #9c9c9c;
+}
+.soso .go {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+  border: none;
+  background: url('../image/btn.gif') no-repeat;
+}
 
 .section .col1 {
   width: 273px;
@@ -641,11 +737,188 @@ body {
   width: 36px;
 }
 
+.panoramic {
+  height: 138px;
+}
+.panoramic a {
+  color: #333;
+}
+.panoramic a:hover {
+  color: #d80000;
+  text-decoration: underline;
+}
+.panoramic span {
+  line-height: 26px;
+}
+
+.pic-list li {
+  overflow: hidden;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #dadada;
+}
+.pic-list .img {
+
+}
+.pic-list .img a {
+  padding: 2px;
+  width: 90px;
+  height: 67px;
+  display: block;
+  border: 1px solid #dadada;
+}
+.pic-list .img a:hover {
+  border: 1px solid #dadada;
+}
+.pic-list .text {
+  width: 108px;
+}
+.pic-list h3 {
+  padding-bottom: 4px;
+}
+.pic-list h3 a {
+  color: #b80000;
+  font-weight: normal;
+  font-size: 12px;
+}
+.pic-list h3 a:hover {
+  text-decoration: underline;
+}
+.pic-list p {
+  color: #999;
+}
+.pic-list p a {
+  color: #999;
+}
+.pic-list p a:hover {
+  color: #b80000;
+  text-decoration: underline;
+}
+.wrap .pic-list li {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+.wrap1 .pic-list li {
+  width: 107px;
+  height: 150px;
+  float: left;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.wrap1 .pic-list .text {
+  width: 107px;
+}
+.wrap1 .pic-list .text h3 {
+  padding-top: 5px;
+  width: 105px;
+}
+
+.login {
+  height: 138px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.login h2 {
+  height: 34px;
+  line-height: 34px;
+  text-indent: 10px;
+  border-bottom: 1px solid #dadada;
+}
+.login form {
+  padding: 15px 10px 2px 10px;
+}
+.login ul {
+  border-bottom: 1px solid #f2f2f2;
+}
+.login li {
+  height: 26px;
+}
+.login form span {
+  width: 58px;
+  float: left;
+  color: #595959;
+  word-spacing: 7px;
+}
+.login .text {
+  float: left;
+  width: 87px;
+  height: 17px;
+  margin-right: 3px;
+  border: 1px solid #dadada;
+  background: #f7f7f7;
+}
+.login .btn {
+  width: 54px;
+  height: 22px;
+  border: none;
+  color: white;
+  font-family: '宋体';
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  background: #cb0000;
+}
+.login strong {
+  font-style: normal;
+  padding-left: 3px;
+}
+.login p {
+  line-height: 32px;
+  word-spacing: 20px;
+  text-align: center;
+}
+.login p a {
+  padding-left: 14px;
+  color: #666;
+  background: url('../image/dot.gif') no-repeat 5px center;
+}
+
+.activity, .rmd {
+  width: 348px;
+  height: 498px;
+}
 
 
+.new_title {
+  height: 70px;
+  position: relative;
+  background: url('../image/new_title_bg.gif') no-repeat right 0;
+}
+.rmd .new_title {
+  background-position: right -70px;
+}
+.new_title span,
+.new_title strong,
+.new_title em {
+  position: absolute;
+}
+.new_title span {
+  font-size: 12px;
+  font-family: arial;
+  color: #ea2b31;
+  top: 21px;
+  left: 24px;
+}
+.new_title strong {
+  font-size: 24px;
+  color: #333;
+  top: 31px;
+  left: 24px;
+  font-weight: normal;
+}
+.new_title em {
+  left: 125px;
+  top: 16px;
+  color: #ec1c16;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/* Footer */
 #footer {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #454545;
   line-height: 25px;
   padding-top: 15px;

@@ -152,8 +152,19 @@
             <a href="#"><img src="image/ad/ad1.jpg" alt=""></a>
           </div>
           <div class="clear">
-            <div class="section fl"></div>
-            <div class="section fr"></div>
+            <div class="activity fl">
+              <h2 class="new_title">
+                <span>LUCKY YODAY</span>
+                <strong>每日活动</strong>
+                <em>2014.2</em>
+              </h2>
+            </div>
+            <div class="rmd fr">
+              <h2 class="new_title">
+                <span>RECOMMEND</span>
+                <strong>精彩推荐</strong>
+              </h2>
+            </div>
           </div>
           <div class="clear">
             <div class="options fl">
@@ -197,12 +208,46 @@
                 </li>
               </ul>
               <ul class="list-section">
-                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li class="headline">
+                  <span class="col1">标题</span>
+                  <span class="col2">状态</span>
+                </li>
+                <li>
+                  <span class="col1">
+                    <a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a>
+                  </span>
+                  <span class="col2"><img src="image/ico1.gif" alt=""></span>
+                </li>
+                <li>
+                  <span class="col1">
+                    <a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a>
+                  </span>
+                  <span class="col2"><img src="image/ico2.gif" alt=""></span>
+                </li>
+                <li>
+                  <span class="col1">
+                    <a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a>
+                  </span>
+                  <span class="col2"><img src="image/ico1.gif" alt=""></span>
+                </li>
+                <li>
+                  <span class="col1">
+                    <a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a>
+                  </span>
+                  <span class="col2"><img src="image/ico2.gif" alt=""></span>
+                </li>
+                <li>
+                  <span class="col1">
+                    <a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a>
+                  </span>
+                  <span class="col2"><img src="image/ico1.gif" alt=""></span>
+                </li>
               </ul>
+              <form class="soso" action="">
+                <strong>搜搜谁知道：</strong>
+                <input type="text" class="text" placeholder="搜索关键字">
+                <input type="submit" value="" class="go">
+              </form>
             </div>
             <div class="section fr">
               <h2 class="title">
@@ -216,20 +261,84 @@
               <h2 class="title">
                 <strong>HELP <span>在线帮助</span></strong>
               </h2>
+              <div class="help">
+                <p>您有任何问题，都可以通过全国负费电话，或通过在线客服与我们联系！</p>
+                <ul class="clear">
+                  <li class="phone fl">4006-100-516</li>
+                  <li class="msn fr">100do.com@live.cn</li>
+                </ul>
+                <dl class="fl">
+                  <dt>用户帮助</dt>
+                  <dd><a href="#">金币是什么</a></dd>
+                  <dd><a href="#">怎样查看我的等级</a></dd>
+                  <dd><a href="#">怎么赚积分</a></dd>
+                </dl>
+                <dl class="fr">
+                  <dt>商户帮助</dt>
+                  <dd><a href="#">如何成为明星商户</a></dd>
+                  <dd><a href="#">邮件推广</a></dd>
+                  <dd><a href="#">论坛推广方法</a></dd>
+                </dl>
+              </div>
             </div>
             <div class="section fr">
               <h2 class="title">
                 <strong>100DU IN THE MEDIA <span>媒体声音</span></strong>
                 <a href="#"><img src="image/more.gif" alt="更多"></a>
               </h2>
+              <ul class="media">
+                <li>
+                  <a href="#">
+                    <img src="image/content/media1.gif" alt="">
+                  </a>
+                  <p>日本最大的财经杂志《钻石周刊》对100度享乐网的报道</p>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="image/content/media2.gif" alt="">
+                  </a>
+                  <p>视频网站100度享乐网获得网络视听许可证</p>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="image/content/media3.gif" alt="">
+                  </a>
+                  <p>互联网上的视频橱窗</p>
+                </li>
+                <li>
+                  <a href="#">
+                    <img src="image/content/media4.gif" alt="">
+                  </a>
+                  <p>享乐主义的机会</p>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
         <div class="side fr">
-          <div class="side_section">
-            <h2 class="title">
+          <div class="login">
+            <h2 class="title gradient">
               <strong>LOAD <span>登录</span></strong>
             </h2>
+            <form action="">
+              <ul>
+                <li>
+                  <span>用户名：</span>
+                  <input class="text" type="text">
+                  <input type="checkbox">
+                  <strong>记住我</strong>
+                </li>
+                <li>
+                  <span>密码：</span>
+                  <input class="text" type="password">
+                  <input class="btn" type="submit" value="登录">
+                </li>
+              </ul>
+            </form>
+            <p>
+              <a href="#">新用户注册</a>
+              <a href="#">忘记密码了</a>
+            </p>
           </div>
           <div class="side_ad">
             <a href="#"><img src="image/ad/ad2.jpg" alt=""></a>
@@ -295,42 +404,156 @@
               <strong>SHOP <span>今日推荐</span></strong>
               <a href="#"><img src="image/more.gif" alt="更多"></a>
             </h2>
+            <ul class="pic-list clear">
+              <li>
+                <div class="img fl">
+                  <a href="#">
+                    <img src="image/content/pic1.gif" alt="">
+                  </a>
+                </div>
+                <div class="text fr">
+                  <h3><a href="#">汉莱国际美食百汇</a></h3>
+                  <p>
+                    口味：<a href="#">创意中餐</a><br />
+                    区域：<a href="#">朝阳/CBD</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="img fl">
+                  <a href="#">
+                    <img src="image/content/pic1.gif" alt="">
+                  </a>
+                </div>
+                <div class="text fr">
+                  <h3><a href="#">汉莱国际美食百汇</a></h3>
+                  <p>
+                    口味：<a href="#">创意中餐</a><br />
+                    区域：<a href="#">朝阳/CBD</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="img fl">
+                  <a href="#">
+                    <img src="image/content/pic1.gif" alt="">
+                  </a>
+                </div>
+                <div class="text fr">
+                  <h3><a href="#">汉莱国际美食百汇</a></h3>
+                  <p>
+                    口味：<a href="#">创意中餐</a><br />
+                    区域：<a href="#">朝阳/CBD</a>
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div class="img fl">
+                  <a href="#">
+                    <img src="image/content/pic1.gif" alt="">
+                  </a>
+                </div>
+                <div class="text fr">
+                  <h3><a href="#">汉莱国际美食百汇</a></h3>
+                  <p>
+                    口味：<a href="#">创意中餐</a><br />
+                    区域：<a href="#">朝阳/CBD</a>
+                  </p>
+                </div>
+              </li>
+            </ul>
           </div>
           <div class="side_section">
             <h2 class="title">
               <strong>360<sup>。</sup> SHOP <span>全景逛店</span></strong>
               <a href="#"><img src="image/more.gif" alt="更多"></a>
             </h2>
+            <div class="panoramic">
+              <a href="#">
+                <img src="image/content/360.gif" alt="">
+                <span>CBD核心商圈尊崇典范</span>
+              </a>
+            </div>
           </div>
           <div class="side_section">
             <h2 class="title">
               <strong>SHOP <span>折扣店</span></strong>
               <a href="#"><img src="image/more.gif" alt="更多"></a>
             </h2>
-            <ul class="list-section">
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-            </ul>
+            <div class="wrap">
+              <ul class="pic-list clear">
+                <li>
+                  <div class="img fl">
+                    <a href="#">
+                      <img src="image/content/pic1.gif" alt="">
+                    </a>
+                  </div>
+                  <div class="text fr">
+                    <h3><a href="#">汉莱国际美食百汇</a></h3>
+                    <p>
+                      口味：<a href="#">创意中餐</a><br />
+                      区域：<a href="#">朝阳/CBD</a>
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-section">
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+              </ul>
+            </div>
           </div>
           <div class="side_section">
             <h2 class="title">
               <strong>COUPONS <span>最新加盟</span></strong>
               <a href="#"><img src="image/more.gif" alt="更多"></a>
             </h2>
-            <ul class="list-section">
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
-              <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
-            </ul>
+            <div class="wrap1">
+              <ul class="pic-list clear">
+                <li>
+                  <div class="img fl">
+                    <a href="#">
+                      <img src="image/content/pic1.gif" alt="">
+                    </a>
+                  </div>
+                  <div class="text fr">
+                    <h3><a href="#">汉莱国际美食百汇</a></h3>
+                    <p>
+                      口味：<a href="#">创意中餐</a><br />
+                      区域：<a href="#">朝阳/CBD</a>
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="img fl">
+                    <a href="#">
+                      <img src="image/content/pic1.gif" alt="">
+                    </a>
+                  </div>
+                  <div class="text fr">
+                    <h3><a href="#">汉莱国际美食百汇</a></h3>
+                    <p>
+                      口味：<a href="#">创意中餐</a><br />
+                      区域：<a href="#">朝阳/CBD</a>
+                    </p>
+                  </div>
+                </li>
+              </ul>
+              <ul class="list-section">
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>休闲</span>]</em>老北京一尊皇牛</a></li>
+                <li><a href="#"><em>[<span>美食</span>]</em>老北京一尊皇牛</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
