@@ -136,7 +136,6 @@ body {
 .options {
   position: relative;
   width: 350px;
-  height: 200px;
 }
 .main_ad {
   overflow: hidden;
@@ -184,7 +183,8 @@ body {
   right: 12px;
 }
 .options .nav-content {
-  width: 348px;
+  width: 318px;
+  padding: 0 15px;
   border: 1px solid #dbdbdb;
   border-radius: 0 0 6px 6px;
   position: absolute;
@@ -500,7 +500,7 @@ body {
 .hot-list {
   height: 374px;
   position: relative;
-  padding: 10px 15px 0;
+  padding-top: 10px;
 }
 .hot-list li {
   width: 318px; 
@@ -798,6 +798,9 @@ body {
   margin-bottom: 0;
   border-bottom: none;
 }
+.wrap1 {
+  padding-bottom: 10px;
+}
 .wrap1 .pic-list li {
   width: 107px;
   height: 150px;
@@ -913,6 +916,316 @@ body {
   color: #ec1c16;
   font-size: 36px;
   font-weight: bold;
+}
+
+.activity .con {
+  background: url('../image/activity_bg.gif') no-repeat;
+}
+.activity .info {
+  padding: 16px 25px 0;
+  height: 104px;
+}
+.activity .img {
+  width: 84px;
+  height: 84px;
+  float: left;
+  position: relative;
+}
+.activity .img .mark {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  background: url('../image/activity_bg.gif') no-repeat -373px 0;
+}
+.activity .text {
+  float: right;
+  width: 204px;
+}
+.activity .text h3 {
+  height: 32px;
+  font-size: 12px;
+}
+.activity .text em {
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  color: #cf3530;
+  margin-right: 4px;
+  display: inline-block;
+  text-align: center;
+  background: url('../image/activity_bg.gif') no-repeat -348px 0; 
+}
+.activity .text span {
+  
+}
+.activity .text p {
+  line-height: 18px;
+  color: #999;
+}
+.calendar {
+  width: 323px;
+  padding-left: 25px;
+  position: relative;
+}
+.calendar h3 {
+  height: 34px;
+  line-height: 34px;
+  margin-right: 31px;
+  text-align: center;
+  word-spacing: 10px;
+  background: url('../image/adorn.gif') repeat-x;
+}
+.calendar h3 span {
+  font-size: 14px;
+  font-family: arial;
+  color: #666;
+}
+.calendar li {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 2px 2px 0;
+  float: left;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  background: #ededed;
+  position: relative;
+}
+.calendar .noCurrMon {
+  background: #f8f8f8;
+  color: #ccc;
+}
+.calendar .active, .calendar .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.calendar .active {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #d30408;
+}
+.calendar .img {
+  width: 40px;
+  height: 40px;
+}
+.act_info {
+  width: 294px;
+  height: 84px;
+  padding: 10px;
+  border: 1px solid #c0c0c0;
+  background: #fff;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.act_info img {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #dbdbdb;
+  float: left;
+}
+.act_info .text {
+  float: right;
+  width: 200px;
+}
+.act_info h4 {
+  font-size: 12px;
+  color: #333;
+  padding-bottom: 8px;
+}
+.act_info strong {
+  color: #ccc;
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.act_info span {
+  width: 8px;
+  height: 14px;
+  overflow: hidden;
+  position: absolute;
+  top: 45px;
+  left: -8px;
+  background: url('../image/adorn.gif') no-repeat 0 -48px;
+}
+
+.pic {
+  width: 294px;
+  height: 168px;
+  padding: 12px 12px 0;
+  background: #f8f8f8;
+  position: relative;
+  margin: 0 auto;
+}
+.pic ul {
+  width: 223px;
+  height: 133px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+.pic ul li {
+  width: 223px;
+  height: 133px;
+  border: 1px solid #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.pic ul li img{
+  width: 223px;
+  height: 133px;
+}
+.pic ol {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.pic ol li,.pic ol li img {
+  width: 54px;
+  height: 30px;
+}
+.pic .active {
+  border: 3px solid #d6191d;
+}
+.pic ol li {
+  border: 3px solid #fff;
+  margin-bottom: 13px;
+}
+.pic p {
+  position: absolute;
+  line-height: 32px;
+  left: 12px;
+  bottom: 0px;
+}
+
+.rmd-list {
+  padding: 18px 26px 0;
+}
+.rmd-list li {
+  height: 27px;
+  line-height: 27px;
+  vertical-align: middle;
+}
+.rmd-list em {
+  margin-right: 7px;
+  color: #dfdfdf;
+}
+.rmd-list img {
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.rmd-list a {
+  color: #454545;
+}
+.rmd-list span{
+  float: right;
+  font-family: arial;
+  font-size: 12px;
+  color: #999;
+}
+
+.traffic {
+  height: 330px;
+  margin-bottom: 10px;
+}
+
+.bbs {
+  height: 288px;
+}
+.bbs li {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 3px;
+  background: #f8f8f8;
+  border-radius: 6px;
+  position: relative;
+}
+.bbs strong {
+  float: left;
+  width: 45px;
+  color: #d80000;
+  text-indent: 10px;
+}
+.bbs a {
+  color: #333;
+  position: absolute;
+}
+.bbs .album {
+  float: right;
+  color: #666;
+  padding-right: 22px;
+}
+.bbs img,.bbs .autor, .bbs .seq,.bbs .active .album {
+  display: none;
+  position: absolute;
+}
+.bbs .active {
+  height: 70px;
+  background: #d90000;
+}
+.bbs .active img {
+  display: block;
+  top: 10px;
+  left: 10px;
+}
+.bbs .active a {
+  color: #fff;
+  font-weight: bold;
+  top: 7px;
+  left: 70px;
+}
+.bbs .active .autor {
+  display: block;
+  color: #fff;
+  top: 33px;
+  left: 70px;
+}
+.bbs .active .seq {
+  display: block;
+  color: #fff;
+  bottom: -5px;
+  right: 4px;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.hot-area {
+  height: 258px;
+}
+.hot-area li {
+  width: 78px;
+  height: 78px;
+  float: left;
+  margin: 0 2px 2px 0;
+  position: relative;
+}
+.hot-area li p {
+  position: absolute;
+  width: 144px;
+  height: 66px;
+  padding: 12px 0 0 12px;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  top: 0;
+  left: 0;
+}
+.hot-area .big {
+  width: 156px;
+}
+.hot-area .small {
+  width: 77px;
+}
+
+.wrap2 {
+  padding-bottom: 2px;
+}
+.wrap3 {
+  padding-bottom: 4px;
 }
 
 /* Footer */
