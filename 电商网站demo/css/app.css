@@ -162,6 +162,7 @@ body {
   height: 34px;
   position: relative;
   z-index: 2;
+  cursor: pointer;
 }
 .options .nav li {
   width: 172px;
@@ -430,12 +431,18 @@ body {
   bottom: 0;
   background: url('../image/search_img.png') no-repeat -226px 8px;
 }
-#search .update ul {
-  width: 336px;
+#search .wrap_update {
   height: 30px;
+  width: 336px;
   overflow: hidden;
   position: relative;
   left: 60px;
+}
+#search .update ul {
+  width: 336px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #search .update li {
   height: 30px;
@@ -570,6 +577,7 @@ body {
   border-bottom: 1px solid #fff;
   font-weight: bold;
   margin-bottom: -1px;
+  background: white;
 }
 .tab li i {
   top: 10px;
