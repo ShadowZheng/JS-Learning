@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5历史管理</title>
+</head>
+<script type="text/javascript">
+  window.onload = function() {
+    var oBtn = document.getElementById('btn');
+    var oDiv = document.getElementById('div1');
+    var obj = {};
+    oBtn.onclick = function() {
+      var number = randomNumber(35, 7);
+      var rd = Math.random();
+      obj[rd] = number;
+      oDiv.innerHTML = number;
+      window.location.hash = rd;
+    }
+    window.onhashchange = function() {
+      var hash = obj[window.location.hash.substring(1)] || '';
+      oDiv.innerHTML = hash;
+    }
+    function randomNumber(all, num) {
+      var arr = [];
+      var arr7 = [];
+      for (var i = 1; i <= all; i++) {
+        arr.push(i);
+      }
+      for (var i = 0; i < num; i++) {
+        arr7.push(arr.splice(Math.floor(Math.random()*arr.length), 1));
+      }
+      return arr7;
+    }
+  }
+</script>
+<body>
+  <input id="btn" type="button" value="35选7">
+  <div id="div1"></div>
+</body>
+</html>
