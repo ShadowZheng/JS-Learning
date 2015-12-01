@@ -103,12 +103,109 @@ $(function() {
 				});
 			});
 		}
-	})()
+	})();
 
 	// 自动播放焦点图
 	(function() {
 		var $ulLi = $('.pic ul li');
 		var $olLi = $('.pic ol li');
 		var $p = $('.pic p');
+		var timer = null;
+		var iNow = 0;	
+		fnFade();
+		autoPlay();
+		$olLi.each(function(index) {
+			$(this).click(function(event) {
+				iNow = index;
+				fnFade();
+			});
+		});
+
+		$('.pic').hover(function() {
+			clearInterval(timer);
+		}, autoPlay);
+
+		function autoPlay() {
+			timer = setInterval(function(){
+				iNow++;
+				if (iNow > $olLi.length - 1) {
+					iNow = 0;
+				};
+				fnFade();
+			}, 2000);
+		}
+
+		function fnFade() {
+			$ulLi.each(function(index) {
+				if (index != iNow) {
+					$(this).fadeOut().css('zIndex', '1');;
+					$olLi.eq(index).removeClass('active');
+				} else {
+					$(this).fadeIn().css('zIndex', '2');;
+					$olLi.eq(index).addClass('active');
+				}
+				$p.text($olLi.eq(iNow).find('img').attr('alt'));
+			});
+		}
+	})();
+
+	// 日历
+	(function() {
+		var $calendar = $('.calendar');
+		var $span = $calendar.find('h3 span');
+		var $img = $calendar.find('.img');
+		var $info = $('.act_info');
+
+		$img.hover(function() {
+			var iTop = $(this).parent().position().top - 30;
+			var iLeft = $(this).parent().position().left + 50;
+			var index = $(this).parent().index()%$span.size();
+			
+			$info.show().css({
+				'top': iTop,
+				'left': iLeft
+			});
+			$info.find('img').attr('src', $(this).attr('src'));
+			$info.find('strong').text($span.eq(index).text());
+			$info.find('p').text($(this).attr('alt'));
+		}, function() {
+			$info.hide();
+		});
+	})();
+
+	// BBS
+	(function(){
+		$('.bbs li').mouseover(function(event) {
+			$('.bbs li').removeClass('active');
+			$(this).addClass('active');
+		});
+	})();
+
+	// 红人烧客
+	(function() {
+		var arr = [
+			'',
+			'用户1<br />人气1',
+			'用户名：性感宝贝<br />区域：朝阳CBD<br />人气：124987',
+			'用户3<br />人气3',
+			'用户4<br />人气4',
+			'用户5<br />人气5',
+			'用户6<br />人气6',
+			'用户7<br />人气7',
+			'用户8<br />人气8',
+			'用户9<br />人气9',
+			'用户10<br />人气10'
+		];
+		$('.hot-area li').mouseover(function(event) {
+			if ($(this).index() == 0) {
+				return false;
+			};
+			$('.hot-area li p').remove();
+			var $p = $('<p>' + arr[$(this).index()] + '</p>').css({
+				width: $(this).width() - 12 + 'px',
+				height: $(this).height() - 12 + 'px'
+			});
+			$(this).append($p);
+		});
 	})();
 });

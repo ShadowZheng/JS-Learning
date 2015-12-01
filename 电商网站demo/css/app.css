@@ -1029,6 +1029,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  display: none;
 }
 .act_info img {
   width: 80px;
