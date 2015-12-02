@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('app',[]);
+		app.controller('A', function($scope) {
+			$scope.iphone = {
+				money: 5,
+				num: 1,
+				fre: 10
+			}
+			$scope.sum = function() {
+				return $scope.iphone.money * $scope.iphone.num;
+			}
+			$scope.$watch($scope.sum, function(newVal, oldVal){
+				$scope.iphone.fre = newVal >= 100 ? 0 : 10;
+			});
+
+		});
+
+		function B() {
+			alert(this);
+		}
+		var a = {
+			name: 'hello',
+			age: 20
+		}
+		var b = {
+			name : 'hi'
+		}
+		var c = angular.extend(a, b);
+		console.log(b);
+	</script>
+</head>
+<body>
+	<div ng-controller="A">
+		<p>价格： <input type="text" ng-model="iphone.money"></p>
+		<p>个数： <input type="text" ng-model="iphone.num"></p>
+		<p>价格：<span>{{sum() | currency:'￥'}}</span></p>
+		<p>运费：<span>{{iphone.fre | currency:'￥'}}</span></p>
+		<p>总价：<span>{{sum() + iphone.fre | currency:'￥'}}</span></p>
+	</div>
+
+	<div id="div1"></div>
+	
+</body>
+</html>

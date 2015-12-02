@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		var app = angular.module('app', []);
+		app.controller('A',['$scope', '$filter', function($scope, $filter) {
+			$scope.dataList = [
+				{name: 'andy', age: 20},
+				{name: 'molly', age: 10},
+				{name: 'dolly', age: 30},
+				{name: 'eolly', age: 50},
+				{name: 'xolly', age: 15}
+			];
+			$scope.sort = function(type) {
+				// arguments.callee['sort' + type]
+				$scope.dataList = $filter('orderBy')($scope.dataList, type,);
+			}
+		}]);
+		
+	</script>
+</head>
+<body ng-controller="A">
+	<table>
+		<thead>
+			<th ng-click="sort('name')">姓名</th>
+			<th ng-click="sort('age')">年龄</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="data in dataList">
+				<td>{{data.name}}</td>
+				<td>{{data.age}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

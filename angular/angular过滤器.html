@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		/*
+			angular的自带的过滤器：
+			currency："货币符号" 货币金额过滤
+			number：保留的小数位 数字过滤器
+			lowercase/uppercase 转大小写过滤器
+			json 将json串进行格式化展示
+			limitTo：截取位数 截取变量（可截取字符串，数组等）
+			date：日期格式 时间过滤器
+			orderBy：以哪个属性排序：true/fasle 排序过滤器,第二参数为true则表示逆排序
+			filter:要过滤的参数：true 第二参数是完全匹配过滤参数，如果为false则为包含参数的过滤
+			
+			如何在js中直接调用过滤器
+			var app = angular.module('app',[]);
+			app.controller('A',['$scope', '$filter', function($scope, $filter){
+					$scope.name = $filter('uppercase')('hello');
+			}]);
+		*/
+		
+	</script>
+</head>
+<body ng-controller="A">
+	{{name}}
+</body>
+</html>
