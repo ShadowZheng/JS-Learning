@@ -15,8 +15,8 @@
 				{name: 'xolly', age: 15}
 			];
 			$scope.sort = function(type) {
-				// arguments.callee['sort' + type]
-				$scope.dataList = $filter('orderBy')($scope.dataList, type,);
+				arguments.callee['sort' + type] = !arguments.callee['sort' + type];
+				$scope.dataList = $filter('orderBy')($scope.dataList, type, arguments.callee['sort' + type]);
 			}
 		}]);
 		
