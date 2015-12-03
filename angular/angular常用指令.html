@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		/*
+			angular的事件指令：
+			ng-click/ng-dbclick
+			ng-mousedown/ng-mouseup
+			ng-mouseenter/ng-mouseleave
+			ng-mousemove/ng-mouseover/ng-mouseout
+			ng-keydown/ng-keyup/ng-press
+			ng-focus/ng-blur
+			ng-submit 表单提交
+			ng-selected 下拉框选中
+			ng-change 输入框改变触发
+			ng-copy 在输入框执行复制操作时触发
+			ng-cut 剪切操作时触发
+			ng-paste 粘贴操作时触发
+
+			ng-disabled 禁用
+			ng-readonly 只读
+			ng-checked 是否选中
+			ng-value 可以替代原生表单元素的value属性
+			ng-bind 绑定数据，可以避免用表达式的时候的闪烁问题 写法：<div ng-bind="text"></div> 注意：只支持一个属性
+			ng-bind-template  写法：ng-bind-template="{{text}},{{text}}" 支持多表达式
+			ng-bind-html 可以把html字符串输出成html代码到页面上  注意：需要引入angular.sanitize.js插件,并在控制器中注入ngSanitize模块
+			ng-cloak 写法：<div ng-cloak>{{text}}</div> 也可以解决表达式渲染闪烁问题
+			ng-non-bindable 不解析表达式
+
+			样式相关指令：
+			ng-class 写法： <div ng-class="{className1: true, className2: false}"></div>
+			ng-style 写法： <div ng-style="{color:'red'}"></div>
+			ng-href
+			ng-src
+			ng-attr-(suffix) 通用写法 可以把html所有属性写成这种格式，比如ng-attr-title等等
+
+			DOM操作相关指令：
+			ng-show/ng-hide 控制显示隐藏
+			ng-if 控制是否输出dom元素
+			ng-switch 写法：
+				<input type="checkbox" ng-model="bBtn" />
+				<div ng-switch on="oBtn">
+					<div ng-switch-default>默认的效果</div>
+					<div ng-switch-when="false">切换的效果</div>
+				</div>
+			ng-open 针对<details />标签控制其是否打开
+
+			ng-init 初始化model数据
+			ng-include 导入模板
+			ng-model 绑定数据
+				拓展写法： <input type="text" ng-model="text" ng-model-options="{updateOn : 'blur'}" /> 这样不会实时更新数据，只是当blur的时候才会更新数据
+			ng-controller 支持面向对象写法： <div ng-controller="FnAaa as A1">{{A1.属性}}</div>
+
+			标签指令(主要用在表单验证)：
+			<a> 写在ng-app里面的超链是 a指令，没有刷新页面的默认行为
+			<select> 
+				ng-options 可以通过ng-options来设置下拉框列表值， 写法 <select ng-options="item.name for item in items" ng-model="name"></select>
+			<textarea>
+			<input>
+			<form>
+				novalidate 阻止表单默认行为
+
+			表单验证：
+			$valid 是否是有效的
+			$invalid 是否是无效的
+			$pristine 是否是崭新的
+			$dirty 是否被改过
+			$error 
+			注意： name的方式查找，要写ng-model
+
+			required 判断是否为非空，true为空
+			ng-minlength/ng-maxlength 判断是否不到最小/最大长度 true表示不满足条件，false表示满足条件
+			ng-pattern 正则验证 true表示不满足条件
+
+			表单验证提供的样式类：
+			.ng-valid 
+			.ng-invalid
+			.ng-pristine
+			.ng-dirty
+		*/
+		var app = angular.module('app', []);
+		app.controller('A', ['$scope', '$interval', function($scope, $interval) {
+			var iNow = 5;
+			$scope.text = iNow + '秒';
+			$scope.isDisabled = true;
+			var timer = $interval(function(){
+				iNow--;
+				$scope.text = iNow + '秒';
+				if (iNow == 0) {
+					$interval.cancel(timer);
+					$scope.text = '可以点击了';
+					$scope.isDisabled = false;
+				};
+			}, 1000);
+
+			$scope.text1 = 'hello';
+		}]);
+		
+	</script>
+</head>
+<body ng-controller="A">
+	<input type="button" value="{{text}}" ng-disabled="isDisabled">
+	
+	<form action="" name="myForm">
+		<input type="text" name="text1" ng-model="text1" required ng-minlength="5" ng-pattern="/^[a-zA-Z]+$/">
+		<p>{{myForm.text1.$valid}}</p>
+		<p>{{myForm.text1.$invalid}}</p>
+		<p>{{myForm.text1.$pristine}}</p>
+		<p>{{myForm.text1.$dirty}}</p>
+		<p>{{myForm.text1.$error}}</p>
+	</form>
+</body>
+</html>

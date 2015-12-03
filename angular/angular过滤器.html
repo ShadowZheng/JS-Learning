@@ -22,6 +22,14 @@
 					$scope.name = $filter('uppercase')('hello');
 			}]);
 		*/
+
+		// 自定义过滤器：
+		var app = angular.module('app', []);
+		app.filter('myFilter', function(){
+			return function(arg1,arg2) {
+				// return filter something..
+			}
+		})
 		
 	</script>
 </head>

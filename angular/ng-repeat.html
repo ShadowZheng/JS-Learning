@@ -6,6 +6,17 @@
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript">
 		var app = angular.module('app', []);
+		app.filter('myFilter', function() {
+			return function(list, age) {
+				var arr = [];
+				for (var i = 0; i < list.length; i++) {
+					if (list[i].age >= age) {
+						arr.push(list[i]);
+					};
+				};
+				return arr;
+			}
+		});
 		app.controller('A',['$scope', '$filter', function($scope, $filter) {
 			$scope.dataList = [
 				{name: 'andy', age: 20},
@@ -14,22 +25,43 @@
 				{name: 'eolly', age: 50},
 				{name: 'xolly', age: 15}
 			];
+			$scope.viewList = $scope.dataList;
 			$scope.sort = function(type) {
-				arguments.callee['sort' + type] = !arguments.callee['sort' + type];
-				$scope.dataList = $filter('orderBy')($scope.dataList, type, arguments.callee['sort' + type]);
+				arguments.callee.flag = !arguments.callee.flag;
+				$scope.viewList = $filter('orderBy')($scope.viewList, type, !arguments.callee.flag);
+			};
+			$scope.fnFilter = function() {
+				// $scope.viewList = $filter('filter')($scope.dataList, $scope.filterVal);
+				$scope.viewList = $filter('myFilter')($scope.dataList, $scope.filterVal);
 			}
 		}]);
+		/*
+			ng-repeat指令的拓展部分：
+			$index 表示索引
+			$first 第一个元素返回true
+			$middle 除了第一个和最后一个之外的中间项为true
+			$last 最后一个元素返回true
+			$even 奇数行为true
+			$odd 偶数行为true
+			ng-repeat-start 循环兄弟之间元素的操作
+			ng-repeat-end
+			比如：
+			<div ng-repeat="data in dataList">{{data}}</div>
+			<p>{{data}}</p>
+			<div ng-repeat-end></div>
+		*/
 		
 	</script>
 </head>
 <body ng-controller="A">
+	<input type="text" ng-model="filterVal"><input type="button" ng-click="fnFilter()" value="搜索">
 	<table>
 		<thead>
 			<th ng-click="sort('name')">姓名</th>
 			<th ng-click="sort('age')">年龄</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="data in dataList">
+			<tr ng-repeat="data in viewList">
 				<td>{{data.name}}</td>
 				<td>{{data.age}}</td>
 			</tr>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		/*
+			标签指令(主要用在表单验证)：
+			<a> 写在ng-app里面的超链是 a指令，没有刷新页面的默认行为
+			<select> 
+				ng-options 可以通过ng-options来设置下拉框列表值， 写法 <select ng-options="item.name for item in items" ng-model="name"></select>
+			<textarea>
+			<input>
+			<form>
+				novalidate 阻止表单默认行为
+
+			表单验证：
+			$valid 是否是有效的
+			$invalid 是否是无效的
+			$pristine 是否是崭新的
+			$dirty 是否被改过
+			$error 
+			注意： name的方式查找，要写ng-model
+
+			required 判断是否为非空，true为空
+			ng-minlength/ng-maxlength 判断是否不到最小/最大长度 true表示不满足条件，false表示满足条件
+			ng-pattern 正则验证 true表示不满足条件
+
+			表单验证提供的样式类：
+			.ng-valid 
+			.ng-invalid
+			.ng-pristine
+			.ng-dirty
+		*/
+		var app = angular.module('app', []);
+		app.controller('A', ['$scope', function($scope) {
+			$scope.validName = {
+				msgType: 'default',
+				msgs: [
+					{name: 'default', tip: '请输入用户名'},
+					{name: 'required', tip: '用户名不能为空'},
+					{name: 'pattern', tip: '用户名必须为英文字符'},
+					{name: 'pass', tip: '√'}
+				]
+			};
+			$scope.validPwd = {
+				msgType: 'default',
+				msgs: [
+					{name: 'default', tip: '请输入密码'},
+					{name: 'required', tip: '密码不能为空'},
+					{name: 'minlength', tip: '密码长度不能小于6位'},
+					{name: 'pass', tip: '√'}
+				]
+			};
+			$scope.change = function(valid, err) {
+				for(var attr in err) {
+					if (err[attr] == true) {
+						valid.msgType = attr;
+						return;
+					};
+				}
+				valid.msgType = 'pass';
+			};
+		}]);
+		
+	</script>
+</head>
+<body ng-controller="A">
+	<form action="" name="myForm">
+		用户名：<input type="text" name="nName" ng-model="uname" required ng-pattern="/^[a-zA-Z]+$/" ng-blur="change(validName,myForm.nName.$error)">
+		<span ng-repeat="msg in validName.msgs | filter:validName.msgType">{{msg.tip}}</span>
+		<br>
+		密码：<input type="password" name="nPwd" ng-model="upassword" required ng-minlength="6" ng-blur="change(validPwd,myForm.nPwd.$error)">
+		<span ng-repeat="msg in validPwd.msgs | filter:validPwd.msgType">{{msg.tip}}</span>
+	</form>
+</body>
+</html>
