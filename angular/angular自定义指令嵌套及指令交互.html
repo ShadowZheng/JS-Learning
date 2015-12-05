@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		/*
+			angular自定义指令如何嵌套：
+			父指令需要设置transclude为true并在模板中用ng-transclude指令作为子指令的占位符，
+			子指令需要加require属性。如：require : '?^hello' ?号表示如果没找到不报错，^表示hello为父级不写表示hello在自己身上
+			父指令如果想把数据传递给子指令可以通过controller中this对象传给子指令，因为父指令
+			controller中的this对象就是子指令link函数第四个参数reController
+		*/
+		angular.module('app',[])
+		.directive('hello', function(){
+			return {
+				restrict: 'E',
+				replace: true,
+				transclude: true,
+				controller: ['$scope', function($scope) {
+					this.name = '我就是共享数据';
+					this.show = function(){
+						alert('我是共享函数');
+					}
+				}],
+				template: '<div>Hello angular<h1 ng-transclude></h1></div>'
+			}
+		})
+		.directive('hi', function(){
+			return {
+				restrict: 'E',
+				replace: true,
+				require: '?^hello',
+				template: '<span>ssssssssss</span>',
+				link: function(scope, element, attr, reController) {
+					scope.show = reController.show;
+					scope.name = reController.name;
+					console.log(scope);
+				}
+			}
+		});
+
+	</script>
+</head>
+<body>
+	<hello>
+		<hi></hi>
+	</hello>
+</body>
+</html>
