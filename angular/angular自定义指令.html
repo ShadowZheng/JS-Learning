@@ -92,7 +92,8 @@
 								width: $(this).width(),
 								height: $(this).height(),
 								border: '1px solid #ccc'
-							})
+							});
+							$('body').append($line);
 						}
 						$(document).on('mousemove', function(ev) {
 							if (flag) {

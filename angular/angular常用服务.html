@@ -7,17 +7,146 @@
 	<script type="text/javascript">
 		/*
 			angular常用服务：
-      
+      $scope 作用域服务
+				- $watch $scope下的监听服务
+				- $apply
+			$rootScope 根作用域服务
+			$timeout 定时器服务
+			$interval 定时器服务
+			$filter 过滤器服务
+			$http ajax服务
+				- method: 方法类型get、post、jsonp等
+				success:
+				error：
+			$location
+				- absUrl() 绝对地址
+				- path() 设置获取路径
+				- replace() 替换掉之前的路径
+				- hash() 哈希值
+				- search() 参数
+				- url()
+				- host() 主机名
+				- port() 端口号
+				- protocol() 协议名
+			$anchorScroll 锚点跳转服务
+			$cacheFactory 缓存服务
+				- info() 打印相关信息
+				- put() 设置键值对缓存
+				- get() 获取缓存的键值对
+				- remove() 删除某个键值对
+				capacity 设置容量
+			$log 日志服务
+				- log()
+				- warn()
+				- error()
+				- info()
+			$interpolate 插值服务
 
+			$q promise的实现方式，类似于jquery中的differed对象，异步操作扩展
+				- defer()
+				- resolve()
+				- reject()
+				- notify()
+				- then()
 		*/
-		angular.module('app',[]);
+		angular.module('app',[])
+		// angular相关的初始配置操作
+		.config(['$interpolateProvider', function($interpolateProvider){
+			// $interpolateProvider.startSymbol('@');
+			// $interpolateProvider.endSymbol('@');
+		}])
+		.controller('A', [
+			'$scope',
+			'$http',
+			'$timeout',
+			'$location',
+			'$anchorScroll',
+			'$cacheFactory',
+			'$interpolate',
+			'$q',
+			function($scope,
+				$http,
+				$timeout,
+				$location,
+				$anchorScroll,
+				$cacheFactory,
+				$interpolate,
+				$q) {
+			// $http服务实例 百度搜索框
+			var timer = null;
+			$scope.data = [];
+			$scope.change = function(name){
+				$timeout.cancel(timer);
+				timer = $timeout(function(){
+					$http({
+						method: 'JSONP',
+						url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + name + '&cb=JSON_CALLBACK'
+					}).success(function(data, state, headers, config) {
+						$scope.data = data.s;
+					});
+				}, 500);
+			};
+
+			$scope.go = function(id) {
+				$location.hash(id);
+				// 为了避免第二次点击相同hash不进行锚点跳转，手动再执行一次
+				$anchorScroll();
+			}
+
+			// 生成一个缓存实例
+			var cache = $cacheFactory('myCache', {});
+			cache.put('name', 'andy');
+			cache.put('age', 20);
+			console.log(cache.get('age'));
+
+			// 获得延迟对象
+			var dfd = $q.defer();
+			function show() {
+				setTimeout(function(){
+					// dfd.resolve();
+					dfd.reject();
+				}, 2000);
+				return dfd.promise;
+			}
+
+			show().then(function(){
+				alert('成功');
+			}, function(){
+				alert('失败');
+			})
+			$scope.showText = 'ddddddddd'
+		}]);
 
 
 	</script>
+	<style media="screen">
+		#parent div {
+			width: 500px;
+			height: 500px;
+			border: 1px solid #ccc;
+			margin-bottom: 10px;
+		}
+		#parent ul {
+			position: fixed;
+			right: 20px;
+			top: 10px;
+		}
+		#parent li {
+			list-style: none;
+		}
+	</style>
 </head>
-<body>
-	<hello>
-		<hi></hi>
-	</hello>
+<body ng-controller="A">
+	<input type="text" ng-model="name" ng-keyup="change(name)">
+	<input type="button" value="搜索">
+	<ul>
+		<li ng-repeat="d in data">{{d}}</li>
+	</ul>
+	<div id="parent">
+		<ul>
+			<li ng-repeat="id in [1,2,3,4,5]" ng-click="go('div' + id)">{{id}}aaaaaaaaaaaaaaaaaaaaaaaaaa</li>
+		</ul>
+		<div ng-repeat="id in [1,2,3,4,5]" ng-attr-id="div{{id}}">{{id}}</div>
+	</div>
 </body>
 </html>

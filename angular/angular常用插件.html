@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript">
+	/*
+		angular的插件：
+		ngSanitize 将html字符串格式化处理解析成html标签
+		ngRoute 单页面路由
+	*/
+	angular.module('app', ['ngRoute'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/aaa', {
+				template: '<p>首页内容</p>',
+			})
+			.when('/bbb', {
+				template: '<p>学员的内容</p>'
+			})
+			.when('/ccc', {
+				template: '<p>课程的内容</p>'
+			})
+			.otherwise({
+				redirectTo: '/aaa'
+			});
+	}])
+	.controller('A', ['$scope', function($scope) {
+		$scope.name = 'hello';
+	}]);
+	</script>
+</head>
+<body ng-controller="A">
+	<a href="#aaa">首页</a>
+	<a href="#bbb">学员</a>
+	<a href="#ccc">课程</a>
+	<div ng-view></div>
+</body>
+</html>

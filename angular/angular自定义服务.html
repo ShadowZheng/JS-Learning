@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app',[])
+		// 通过factory自定义服务
+		.factory('myService', function(){
+      return {
+        name: 'hello',
+        show: function(){
+          return this.name + ': angular';
+        }
+      };
+    })
+    // 通过provider自定义服务 可以在config中进行配置，factory不行
+    .provider('myProvider', function(){
+      return {
+        age: 20,
+        $get: function() {
+          return {
+            name: 'hello',
+            show: function(){
+              return this.name + ': angular';
+            }
+          }
+        }
+      }
+    })
+    // 通过service方法定义服务 面向对象的方式，function就是个构造函数
+    .service('myServiceByService', function(){
+      return {
+        name: 'myServiceByService',
+        age: 20
+      }
+    })
+    // 定义常量 不可修改 并且可以配置在config中
+    .constant('myServiceByConstant', 'hello angular constant')
+    // 定义常量 可以修改 不能配置在config中
+    .value('myServiceByValue', 'hello angular value')
+    .config(['myProviderProvider', function(myProviderProvider) {
+      console.log(myProviderProvider);
+    }])
+		.controller('A', [
+			'$scope',
+      'myService',
+      'myProvider',
+      'myServiceByService',
+			function($scope,
+				myService,
+        myProvider,
+        myServiceByService) {
+          console.log(myService.show());
+          console.log(myProvider.show());
+          console.log();
+		}]);
+
+
+	</script>
+</head>
+<body ng-controller="A">
+
+</body>
+</html>
