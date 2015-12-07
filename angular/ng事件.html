@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script type="text/javascript">
+	/*
+		angular的事件：
+		  $emit 向上传播 类似于事件冒泡
+      $broadcast 广播机制 类似于 事件捕获
+      event
+        targetScope 目标作用域 传播的终点
+        currentScope 当前作用域 传播的起点
+        name 传播的事件名
+        stopPropagation() 阻止传播 类似于阻止冒泡
+      内部传播方式：
+        $routeChangeStart 其实就是broadcast的机制
+        $viewContentLoaded 事件是挂载在ng-view指令上，当视图加载完毕触发
+	*/
+	angular.module('app', ['ngRoute'])
+  .controller('A', ['$scope', function($scope) {
+    $scope.count = 0;
+    $scope.$on('myEvent', function(event) {
+      $scope.count++;
+      console.log(event.targetScope == event.currentScope);
+    })
+  }]);
+
+	</script>
+</head>
+<body ng-controller="A">
+  {{count}}
+	<div ng-controller="A" ng-click="$broadcast('myEvent')">
+	  {{count}}
+    <div ng-controller="A">
+  	  {{count}}
+  	</div>
+	</div>
+</body>
+</html>

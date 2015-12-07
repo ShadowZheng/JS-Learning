@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript">
+	/*
+		angular的插件：
+		ngSanitize 将html字符串格式化处理解析成html标签
+		ngRoute 单页面路由
+			$routeProvider 来配置路由
+				when
+				otherwise
+			$routeParams 获取路由参数
+			路由事件：
+				$on
+				$routeChangeStart 路由切换之前调用的方法
+				$routeChangeSuccess/Error
+	*/
+	angular.module('app', ['ngRoute','ngAnimate'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider
+			.when('/aaa/:num', {
+				template: '<p>首页内容</p>{{name}}',
+				controller: 'A'
+			})
+			.when('/bbb', {
+				template: '<p>学员的内容</p>',
+				controller: 'B'
+			})
+			.otherwise({
+				redirectTo: '/aaa'
+			});
+	}])
+	.run(['$rootScope', function($rootScope) {
+		$rootScope.$on('$routeChangeStart', function(event, current, pre) {
+				console.log("路由切换前他调用");
+				console.log(event); // angular的事件对象
+				console.log(current);// 当前路径
+				console.log(pre);// 之前路径
+		});
+	}])
+	.controller('A', ['$scope', '$routeParams', function($scope, $routeParams) {
+		console.log($routeParams.num);
+		$scope.name = 'hello';
+	}])
+	.controller('B', ['$scope', function($scope) {
+		$scope.name = 'hello';
+	}]);
+	</script>
+</head>
+<body ng-controller="A">
+	<a href="#aaa/123">首页</a>
+	<a href="#bbb">学员</a>
+	<a href="#aaa/456">课程</a>
+	<div ng-view></div>
+</body>
+</html>

@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
 	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript">
 		/*
 			angular常用服务：
@@ -49,7 +50,7 @@
 				- notify()
 				- then()
 		*/
-		angular.module('app',[])
+		angular.module('app',['ngAnimate'])
 		// angular相关的初始配置操作
 		.config(['$interpolateProvider', function($interpolateProvider){
 			// $interpolateProvider.startSymbol('@');
@@ -134,13 +135,22 @@
 		#parent li {
 			list-style: none;
 		}
+		.box {
+      transition: 1s all;
+    }
+    .box.ng-enter {
+      opacity: 0;
+    }
+    .box.ng-enter-active {opacity: 1;}
+    .box.ng-leave {display: none;}
+		.box.ng-enter-stagger {animation-delay: 100ms;}
 	</style>
 </head>
 <body ng-controller="A">
 	<input type="text" ng-model="name" ng-keyup="change(name)">
 	<input type="button" value="搜索">
 	<ul>
-		<li ng-repeat="d in data">{{d}}</li>
+		<li ng-repeat="d in data" class="box">{{d}}</li>
 	</ul>
 	<div id="parent">
 		<ul>

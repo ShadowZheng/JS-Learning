@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script type="text/javascript">
+	/*
+		ng的动画插件ngAnimate：
+    ngAnimate通过css3来实现动画：
+      只需要设置默认提供的ng样式，当元素出现和消失就会通过css3动画来渲染
+      ng-enter 元素出现时
+      ng-enter-active 元素出现完成时
+      ng-leave 元素离开时
+      ng-leave-active 元素离开完成时
+      支持的指令有:
+        if,view,repeat,include,switch
+      ng-repeat指令特有：
+        ng-enter-stagger 按照顺序配合css3 animation-delay属性用
+	*/
+	angular.module('app', ['ngAnimate'])
+  .controller('A',['$scope', function($scope) {
+    $scope.btn = true;
+  }])
+	</script>
+  <style media="screen">
+    #div1 {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      transition: 1s all;
+    }
+    #div1.ng-enter {
+      opacity: 0;
+    }
+    #div1.ng-enter-active {opacity: 1;}
+    #div1.ng-leave {opacity: 1;}
+    #div1.ng-leave-active {opacity: 0;}
+  </style>
+</head>
+<body ng-controller="A">
+  <input type="checkbox" ng-model="btn" ng-checked="btn">
+  <div id="div1" ng-if="btn">
+
+  </div>
+</body>
+</html>
