@@ -3,13 +3,156 @@
 <head>
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript">
-		
-		
+		/* angular自定义指令：
+			directive:
+				restrict:
+					'E表示标签元素'
+					'A表示属性'
+					‘C表示class方式’
+					'M注释的方式' 写法：<!-- directive:hello --> 并且replace必须为true
+					注意：区分大小写，支持组合方式
+				replace: 表示是否替换指令标签，true表示页面不显示标签指令，只显示指令里的模板
+				scope:
+					默认false 每个指令作用域共享
+					true表示作用域独立
+					{} 表示隔离作用域 表示不会受外部数据影响
+						绑定策略
+						@ 绑定普通字符串
+						= 解析数据
+						& 绑定父级函数
+				controller: 指定指令的控制器
+				link: 用来dom操作,有三个参数
+					scope 作用域
+					element 指令最外层的元素
+					attr 当前指令所有的属性
+		*/
+		angular.module('app', [])
+		.controller('A', ['$scope', function($scope) {
+			$scope.data1 = [
+				{title: 'tab1', content: '1111'},
+				{title: 'tab2', content: '2222'},
+				{title: 'tab3', content: '3333'}
+			];
+			$scope.data2 = [
+				{title: 'tab4', content: '4444'},
+				{title: 'tab5', content: '5555'},
+				{title: 'tab6', content: '6666'}
+			];
+		}])
+		.directive('hello', function(){
+			return {
+				restrict: 'AECM',
+				replace: true,
+				template: '<div>hello World</div>'
+			}
+		})
+		// 自定义一个tab
+		.directive('myTab', function(){
+			return {
+				restrict: 'E',
+				replace: true,
+				scope: {
+					myId : '@', // 绑定的是my-id属性，如果想绑定别的属性可以@属性
+					myData: '='
+				},
+				controller: ['$scope', function($scope) {
+					$scope.name = 'world'
+				}],
+				templateUrl: 'myTab.directive.html',
+				link: function(scope, element, attr) {
+					element.on('click', 'input', function(event) {
+						$(this).addClass('active').siblings().removeClass('active');
+						element.find('div').removeClass('active');
+						element.find('div').eq($(this).index()).addClass('active');
+					});
+				}
+			}
+		})
+		// 拖拽功能
+		.directive('myDrag', function() {
+			return {
+				restrict: 'A',
+				link: function(scope, element, attr) {
+					var disX = 0;
+					var disY = 0;
+					var flag = angular.equals(attr.myDrag, 'true');
+					element.on('mousedown', function(ev) {
+						disX = ev.pageX - $(this).offset().left;
+						disY = ev.pageY - $(this).offset().top;
+						var This = this;
+						if (flag) {
+							var $line = $('<div>');
+							$line.css({
+								position: 'absolute',
+								top: $(this).offset().top,
+								left: $(this).offset().left,
+								width: $(this).width(),
+								height: $(this).height(),
+								border: '1px solid #ccc'
+							})
+						}
+						$(document).on('mousemove', function(ev) {
+							if (flag) {
+								$line.css({
+									left: ev.pageX - disX,
+									top: ev.pageY - disY
+								});
+							} else {
+								$(This).css({
+									left: ev.pageX - disX,
+									top: ev.pageY - disY
+								});
+							}
+						});
+						$(document).on('mouseup', function() {
+							$(this).off();
+							if (flag) {
+								$(This).css({
+									top: $line.offset().top,
+									left: $line.offset().left
+								});
+								$line.remove();
+							}
+						});
+						return false;
+					})
+				}
+			}
+		});
+
 	</script>
+	<style media="screen">
+		.tab div {
+			display: none;
+			border: 1px solid red;
+			width: 200px;
+			height: 200px;
+		}
+		.tab input.active {
+			background: red;
+		}
+		.tab div.active {
+			display: block;
+		}
+		#drag {
+			width: 200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+		}
+	</style>
 </head>
-<body ng-controller="A">
-	
-</body>
+<hello></hello>
+<div hello></div>
+<div class="hello"></div>
+<!-- directive:hello -->
+<div ng-controller="A">
+	<my-tab my-id="div1" my-data="data1"></my-tab>
+	<my-tab my-id="div2" my-data="data2"></my-tab>
+</div>
+
+<div id="drag" my-drag="true"></div>
 </html>

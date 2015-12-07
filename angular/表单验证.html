@@ -8,7 +8,7 @@
 		/*
 			标签指令(主要用在表单验证)：
 			<a> 写在ng-app里面的超链是 a指令，没有刷新页面的默认行为
-			<select> 
+			<select>
 				ng-options 可以通过ng-options来设置下拉框列表值， 写法 <select ng-options="item.name for item in items" ng-model="name"></select>
 			<textarea>
 			<input>
@@ -20,7 +20,7 @@
 			$invalid 是否是无效的
 			$pristine 是否是崭新的
 			$dirty 是否被改过
-			$error 
+			$error
 			注意： name的方式查找，要写ng-model
 
 			required 判断是否为非空，true为空
@@ -28,7 +28,7 @@
 			ng-pattern 正则验证 true表示不满足条件
 
 			表单验证提供的样式类：
-			.ng-valid 
+			.ng-valid
 			.ng-invalid
 			.ng-pristine
 			.ng-dirty
@@ -63,7 +63,7 @@
 				valid.msgType = 'pass';
 			};
 		}]);
-		
+
 	</script>
 </head>
 <body ng-controller="A">

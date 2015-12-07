@@ -1,0 +1,6 @@
+<div id="{{myId}}" class="tab">
+  <input type="button" ng-repeat="data in myData" ng-value="data.title" ng-class="{active:$first}">
+  <div ng-repeat="data in myData" ng-class="{active:$first}">
+    {{data.content}}
+  </div>
+</div>
