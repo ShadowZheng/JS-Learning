@@ -20,6 +20,11 @@
         if,view,repeat,include,switch
       ng-repeat指令特有：
         ng-enter-stagger 按照顺序配合css3 animation-delay属性用
+			ng-show/hide class model配合的ng动画类是：
+				ng-hide-add
+				ng-hide-add-active
+				ng-hide-remove
+				ng-hide-remove-active
 	*/
 	angular.module('app', ['ngAnimate'])
   .controller('A',['$scope', function($scope) {
@@ -27,11 +32,12 @@
   }])
 	</script>
   <style media="screen">
-    #div1 {
+    #div1, #div2 {
       width: 200px;
       height: 200px;
       background-color: red;
       transition: 1s all;
+			margin-bottom: 10px;
     }
     #div1.ng-enter {
       opacity: 0;
@@ -39,12 +45,22 @@
     #div1.ng-enter-active {opacity: 1;}
     #div1.ng-leave {opacity: 1;}
     #div1.ng-leave-active {opacity: 0;}
+
+		#div2.ng-hide-remove {
+      opacity: 0;
+    }
+    #div2.ng-hide-remove-active {opacity: 1;}
+    #div2.ng-hide-add {opacity: 1;}
+    #div2.ng-hide-add-active {opacity: 0;}
+
+
   </style>
 </head>
 <body ng-controller="A">
   <input type="checkbox" ng-model="btn" ng-checked="btn">
   <div id="div1" ng-if="btn">
-
+  </div>
+	<div id="div2" ng-show="btn">
   </div>
 </body>
 </html>
