@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>ngResource 插件学习</title>
+	<script src="bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+	<script type="text/javascript">
+	/*
+    $resource是一中RESTful的API服务，提供了四个方法来请求资源：
+    get 获取资源 单个对象
+    post 发送资源
+    query 获取列表资源
+    delete 删除资源
+	*/
+	angular.module('app', ['ngRoute', 'ngResource'])
+  .config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+      .when('/:name', {
+        template: '<div>{{data.name}}</div><div>{{data.age}}</div>',
+        controller: 'A'
+      }).otherwise({
+        redirectTo: '/zhangsan'
+      })
+  }])
+  .controller('A', ['$scope', '$location', '$resource', '$routeParams', function($scope, $location, $resource, $routeParams) {
+    $scope.$location = $location;
+    if ($routeParams.name) {
+      $scope.data = $resource($routeParams.name + '.json', {}, {}).get();
+    }
+    // var obj = $resource(':name.:type', {
+    //   type: 'json'
+    // }, {});
+    // $scope.data = obj.get({name: data});
+    // console.log(obj.get({
+    //   name: 'data' //传给resource的参数
+    // }, function(){
+    //   // 成功回调
+    // }, function(){
+    //   //失败回调
+    // }));
+  }]);
+	</script>
+</head>
+<body ng-controller="A">
+  <input type="button" value="张三" ng-click="$location.path('zhangsan')">
+  <input type="button" value="李四" ng-click="$location.path('lisi')">
+  <div ng-view></div>
+</body>
+</html>

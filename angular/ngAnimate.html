@@ -16,6 +16,7 @@
       ng-enter-active 元素出现完成时
       ng-leave 元素离开时
       ng-leave-active 元素离开完成时
+			ng-move 位置变化时
       支持的指令有:
         if,view,repeat,include,switch
       ng-repeat指令特有：
@@ -27,17 +28,56 @@
 				ng-hide-remove-active
 	*/
 	angular.module('app', ['ngAnimate'])
+	// jleave和enter是针对加入和删除的元素
+	.animation('.animate1', function(){
+		return {
+			leave: function(element, done) {
+				$(element).animate({
+					width: 0,
+					height: 0
+				}, 1000, done)
+			},
+			enter: function(element, done) {
+				$(element).css({
+					width: 0,
+					height: 0
+				}).animate({
+					width: 100,
+					height: 100
+				}, 1000, done)
+			}
+		}
+	})
+	// addClass和removeClass是针对显示隐藏的元素
+	.animation('.animate2', function(){
+		return {
+			addClass: function(element, sClass, done) {
+				$(element).animate({
+					width: 0,
+					height: 0
+				}, 1000, done);
+			},
+			removeClass: function(element, sClass, done) {
+				$(element).animate({
+					width: 100,
+					height: 100
+				}, 1000, done);
+			}
+		}
+	})
   .controller('A',['$scope', function($scope) {
     $scope.btn = true;
+
   }])
 	</script>
   <style media="screen">
     #div1, #div2 {
-      width: 200px;
-      height: 200px;
+      width: 100px;
+      height: 100px;
       background-color: red;
       transition: 1s all;
 			margin-bottom: 10px;
+			display: none;
     }
     #div1.ng-enter {
       opacity: 0;
@@ -45,7 +85,7 @@
     #div1.ng-enter-active {opacity: 1;}
     #div1.ng-leave {opacity: 1;}
     #div1.ng-leave-active {opacity: 0;}
-
+		#div2 {background: blue;}
 		#div2.ng-hide-remove {
       opacity: 0;
     }
@@ -53,6 +93,11 @@
     #div2.ng-hide-add {opacity: 1;}
     #div2.ng-hide-add-active {opacity: 0;}
 
+		#div3 {
+			width: 100px;
+			height: 100px;
+			background: orange;
+		}
 
   </style>
 </head>
@@ -62,5 +107,7 @@
   </div>
 	<div id="div2" ng-show="btn">
   </div>
+	<div id="div3" ng-show="btn" class="animate2">
+	</div>
 </body>
 </html>
