@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='app'>
+<html lang="en" ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
@@ -36,10 +36,39 @@
 			var app = angular.module('app',[])的方法：
 			app.run(['rootScope',function($rootScope){}]) run方法作用相当于初始化一些全局的数据
 		*/
-		
+		function FnA() {
+			console.log(this);
+		}
+		var obj = {name: 'andy'};
+		angular.bind(obj, FnA)(); // 改变this指向了obj
+		var obj1 = {age: 25};
+		angular.extend(obj1, obj); // 把obj拷贝到obj1
+		var str = 'Asssd';
+		console.log(angular.lowercase(str));
+		console.log(angular.uppercase(str));
+		/**
+		* app Module
+		*
+		* Description
+		*/
+		angular.module('app', []).
+		controller('AppCtrl', ['$scope', function ($scope) {
+			// $scope.
+		}]);
+
 	</script>
+	<style type="text/css">
+		.odd {
+			background: red;
+		}
+		.even {
+			background: blue;
+		}
+	</style>
 </head>
 <body>
-	
+	<ul ng-init="names = ['aaa', 'bbb', 'ccc', 'ddd']">
+		<li ng-repeat="name in names" ng-class-odd="'odd'" ng-class-even="'even'">{{name}}</li>
+	</ul>
 </body>
 </html>
