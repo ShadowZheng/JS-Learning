@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 结构化标签 -->
+	<header>用在页面头部或者版块的头部</header>
+	<nav>导航</nav>
+	<hgroup>
+		<h1>主标题</h1>
+		<h2>副标题</h2>
+	</hgroup>
+	<section>一个区块</section>
+	<article>相对结构完成独立的内容，比如一篇文章，帖子</article>
+	<aside>一般表示侧边栏、广告、nav元素组、也会用在跟article相关的附属信息</aside>
+	<footer>用在页面底部或者版块的底部</footer>
+
+	<!-- 语义化标签 -->
+	<figure>
+		用于对元素进行组合，一般用于图片或视频
+		<figcaption>
+			figure的子元素，用于对figure内容进行说明
+		</figcaption>
+	</figure>
+	<time datatime="2008-02-12">
+		用来表示时间或日期
+	</time>
+
+	<input type="text" list="valList">
+	<!-- datalsit与input配合使用用来定义input可能的值 -->
+	<datalist id="valList">
+		<option value="js">javascript</option>
+		<option value="html">html</option>
+		<option value="css">css</option>
+	</datalist>
+
+	<details>
+		<summary>介绍</summary>
+		<p>这里是详情信息</p>
+	</details>
+
+	<dialog>
+		<dt>信息头</dt>
+		<dd>信息</dd>
+	</dialog>
+
+	<address>
+		定义作者信息
+	</address>
+	<mark>
+		标记
+	</mark>
+
+	<progress max="100" value="76">
+		<span>76</span>%
+	</progress>
+
+	<!-- HTML5 表单 -->
+	<form action="">
+		<input type="email" />电子邮箱<br><br>
+		<input type="tel" />电话号码<br><br>
+		<input type="url">网页地址<br><br>
+		<input type="search">搜索引擎<br><br>
+		<input type="range">特定范围内的数值选择器<br><br>
+		<input type="number">只能包含数字<br><br>
+		<input type="color">取色器<br><br>
+		<input type="datetime">显示完整时期<br><br>
+		<input type="datetime-local">显示完整日期，不含时区<br><br>
+		<input type="time">显示时间，不含时区<br><br>
+		<input type="date">显示日期<br><br>
+		<input type="week">显示周<br><br>
+		<input type="month">显示月<br><br>
+		<input type="submit">
+	</form>
+</body>
+</html>

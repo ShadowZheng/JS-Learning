@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
-	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript">
 		/*
 			angular的常用工具方法：
@@ -70,5 +70,14 @@
 	<ul ng-init="names = ['aaa', 'bbb', 'ccc', 'ddd']">
 		<li ng-repeat="name in names" ng-class-odd="'odd'" ng-class-even="'even'">{{name}}</li>
 	</ul>
+
+	<input type="text" ng-model="value" ng-init="value='cut me'; cut = false" ng-cut="cut = true">
+	cut: {{cut}}
+	<br><br>
+	<button ng-dblclick="count=count + 1" ng-init="count = 0">Increment count(Double click)</button>
+	{{count}}
+	<br><br>
+	<input type="checkbox" ng-model="checked">
+	<button ng-disabled="checked">Button</button>
 </body>
 </html>

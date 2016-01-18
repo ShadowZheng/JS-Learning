@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
-	<script src="bower_components/angular/angular.min.js"></script>
-	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
 	<script type="text/javascript">
 		/*
 			angular常用服务：
@@ -43,7 +43,7 @@
 				- info()
 			$interpolate 插值服务
 
-			$q promise的实现方式，类似于jquery中的differed对象，异步操作扩展
+			$q promise的实现方式，类似于jquery中的deffered对象，异步操作扩展
 				- defer()
 				- resolve()
 				- reject()
@@ -160,5 +160,7 @@
 		</ul>
 		<div ng-repeat="id in [1,2,3,4,5]" ng-attr-id="div{{id}}">{{id}}</div>
 	</div>
+
+	<!-- $anchorScrollProvider 禁止自动滚动当$location.hash()改变的时候 -->
 </body>
 </html>

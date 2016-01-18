@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>面向对象的特点</title>
+</head>
+<script type="text/javascript">
+	/*
+		面向对象编程的特点
+		抽象： 抽象出核心的特征
+		封装： 通过对象来访问方法
+		继承： 从已有对象上继承出新的对象 好处：复用
+		多态： 多对象的不同形态
+	*/
+
+	function Person(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	// 公共的方法放到原型上
+	Person.prototype.showName = function() {
+		alert(this.name);
+	}
+	var person1 = new Person('andy', 28);
+	var person2 = new Person('molly', 25);
+	// person1.showName();
+	// person2.showName();
+</script>
+<style>
+	td {
+		border: 1px solid red;
+		border-collapse: collapse;
+		box-sizing: border-box;
+	}
+	td {
+		float: left;
+	}
+	.col1, .col2  {
+		width: 50%;
+	}
+</style>
+<body>
+	<table width="960">
+		<tr>
+			<td class="col1">1</td>
+			<td class="col2">2</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td class="col1">1</td>
+			<td class="col2">2</td>
+			<td>3</td>
+		</tr>
+	</table>
+</body>
+</html>

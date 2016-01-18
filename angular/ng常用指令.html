@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>angular 学习</title>
-	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript">
 		/*
 			angular的事件指令：
@@ -97,9 +98,53 @@
 			}, 1000);
 
 			$scope.text1 = 'hello';
+
+			// ngModealOption可以控制让数据在什么时机去更新
+			$scope.user = {name: 'andy', data: ''};
+			$scope.cancel = function(e) {
+				if (e.keyCode == 27) {
+					$scope.userForm.userName.$rollbackViewValue();
+				}
+			}
+
+			$scope.title = 'lorem lorem';
+			$scope.txt = 'Neque porro quisquam est qui dolorem ipsum quia dolor...';
+
+			$scope.colors = [
+		      {name:'black', shade:'dark'},
+		      {name:'white', shade:'light'},
+		      {name:'red', shade:'dark'},
+		      {name:'blue', shade:'dark'},
+		      {name:'yellow', shade:'light'}
+		    ];
+		    $scope.myColor = $scope.colors[2];
+
 		}]);
-		
+
+		angular.module('app')
+		.directive('panel', [function () {
+			return {
+				restrict: 'E',
+				transclude: true,
+				scope: {title: '@'},
+				template: '<div style="border: 1px solid black;">\
+		                    <div style="background-color: gray">{{title}}</div>\
+		                    <ng-transclude></ng-transclude>\
+		                  </div>'
+			};
+		}]);
+
 	</script>
+	<style>
+		[contenteidtable] {
+			border: 1px solid black;
+			background-color: white;
+			min-height: 20px;
+		}
+		.ng-invalid {
+			border: 1px solid red;
+		}
+	</style>
 </head>
 <body ng-controller="A">
 	<input type="button" value="{{text}}" ng-disabled="isDisabled">
@@ -112,5 +157,66 @@
 		<p>{{myForm.text1.$dirty}}</p>
 		<p>{{myForm.text1.$error}}</p>
 	</form>
+	<br><br>
+	<!-- ngModelOption示例 -->
+	<h2>ngModelOption示例</h2>
+	<form name="userForm">
+	    Name:
+	    <input type="text" name="userName"
+	           ng-model="user.name"
+	           ng-model-options="{ updateOn: 'blur' }"
+	           ng-keyup="cancel($event)" /><br />
+
+	    Other data:
+	    <input type="text" ng-model="user.data" /><br />
+  	</form>
+  	<pre>user.name = <span ng-bind="user.name"></span></pre>
+
+  	<!-- ngPluralize 示例 主要用作国际化 -->
+  	<h2>ngPluralize</h2>
+  	Person1: <input type="text" ng-model="person1" value="andy"><br>
+	Person2: <input type="text" ng-model="person2" value="molly"><br>
+	Number of People: <input type="text" ng-model="personCount" value="1"><br>
+	<ng-pluralize count="personCount" 
+		when="{'0': 'Nobody is viewing', 
+			 'one': '1 person is viewing',
+			 'other': '{} person are viewing'}"></ng-pluralize><br>	
+	<ng-pluralize count="personCount" 
+		when="{'0': 'Nobody is viewing', 
+			 '1': '{{person1}} person is viewing',
+			 '2': '{{person1}} and {{person2}} person are viewing',
+			 'one': '{{person1}},{{person2}} and one other person are viewing.',
+			 'other': '{{person1}},{{person2}} and {} other people are viewing.'}" offset="2"></ng-pluralize><br><br>
+
+	<!-- ngReadonly 示例 -->
+	<h2>ngReadonly</h2>
+	Click me to make text readonly <input type="checkbox" ng-model="isReadOnly"><br>
+	<input type="text" value="abc" ng-readonly="isReadOnly"><br><br>
+
+	<!-- ngSelected 示例 -->
+	<h2>ngSelected</h2>
+	Check me to select <input type="checkbox" ng-model="isSelected"><br>
+	<select>
+		<option value="1">西安</option>
+		<option value="2">北京</option>
+		<option ng-selected="isSelected" value="3">上海</option>
+	</select><br><br>
+
+	<!-- ngTransclude 示例 -->
+	<h2>ngTransclude</h2>
+	<panel title="{{title}}">{{txt}}</panel>
+
+	<!-- ngOptions 指令示例 -->
+	<h2>ngOptions</h2>
+	<ul>
+		<li ng-repeat="color in colors">
+			Name: <input type="text" ng-model="color.name">
+			[<a href="" ng-click="colors.splice($index, 1)">X</a>]
+		</li>
+		<li>[<a href="" ng-click="colors.push({})">add</a>]</li>
+	</ul>
+
+	<select ng-model="myColor" ng-options="color.name for color in colors"></select><br>
+	<select ng-model="myColor" ng-options="color.name group by color.shade for color in colors"></select><br><br>
 </body>
 </html>

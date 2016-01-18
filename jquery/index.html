@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+	<meta charset="UTF-8">
+	<title>angular 学习</title>
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('#btn1').click(function(event) {
+				console.log(event.target)
+			});
+			$('#btn2').click(function(event) {
+				$.ajax({
+					url: 'deferred.json',
+					type: 'GET',
+					dataType: 'json'
+				})
+				.done(function(data) {
+					console.log("第一个回调");
+				})
+				.done(function(data) {
+					console.log('第二个回调');
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {
+					console.log("complete");
+				});
+			});
+
+			var wait = function () {
+				var dtd = $.Deferred();
+				function task() {
+					alert('5秒后执行我');
+					dtd.resolve();
+				}
+
+				setTimeout(task, 5000);
+				return dtd.promise();
+			}
+
+			/*
+			jquery 的deferred对象包含了三种状态 '已完成（resolve）','未完成'， '已失败(reject)'
+			已完成 然后会调用回调函数
+			已失败 会调用fail函数
+			未完成 会调用progress			
+			*/
+			
+			// wait()
+			// .done(function() { alert('我成功了');})
+			// .fail(function() { alert('我失败了');});
+
+
+		});
+			$('#btn').click(function(event) {
+				$('#list').append('<li>我是新增的哈哈哈哈哈</li>');
+			});
+
+		Promise = function() {
+			this.queue = [];
+			this.value = null;
+			this.status = 'pending';
+		}
+
+		Promise.prototype.getQueue = function() {
+			return this.queue;
+		}
+
+		Promise.prototype.getStatus = function() {
+			return this.status;
+		}
+
+		Promise.prototype.setStatus = function(s, value) {
+			if (s == 'fulfilled' || s == 'rejected') {
+				this.status = s;
+				this.value = value || null;
+				this.queue = [];
+				var freezeObject = Object.freeze || function(){};
+				freezeObject(this); // Promise状态不可逆
+			}
+		}
+	</script>
+</head>
+<body >
+	<button id="btn1">测试</button><br><br>
+	<button id="btn2">ajax</button>
+
+	<div id="test">
+		<button id="btn">点击我</button>
+		<ul id="list"></ul>
+	</div>
+</body>
+</html>
