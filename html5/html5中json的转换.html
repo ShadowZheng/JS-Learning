@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+	/*
+		新增二个方法
+		JSON.parse()  把字符串转为json对象
+		JSON.stringify() 把json对象转为字符串
+		可以用这两个方法深拷贝对象
+
+		eval() 可以转为任何字符串为js  
+
+
+		HTML5自定义属性
+		data-name  element.dataset.name
+		data-name-list element.dataset.nameList
+
+		HTML5 延迟加载JS
+		<script src='a.js' defer='defer'><'/script> 这个代表延迟加载
+		<script src='a.js' async='async'><'/script> 这个代表是异步加载 
+		Labjs库可以异步加载库
+
+		HTML5历史管理
+
+	*/
+	window.onload = function() {
+		var oBtn = document.querySelector('#btn');
+		var inner = document.querySelector('#inner');
+		oBtn.onclick = function() {
+			var data = randomNum(35, 7);
+			history.pushState(data, '', data);
+			inner.innerHTML = data;
+		}
+
+		window.onpopstate = function(event) {
+			inner.innerHTML = event.state;
+		}
+
+		function randomNum(all, num) {
+			var arr = [];
+			for (var i = 0; i < num; i++) {
+				arr.push(Math.floor(Math.random() * all));
+			}
+			return arr;
+		}
+	}
+</script>
+<body>
+	<div id="div1" data-andy="我是andy"></div>
+	
+	<input id="btn" type="button" value="35选7">
+	<div id="inner"></div>
+
+	<style>
+		li {
+			width: 100px;
+			height: 30px;
+			background: yellow;
+			margin: 10px;
+		}
+		#target {
+			width: 200px;
+			height: 200px;
+			position: relative;
+			top: 300px;
+			left: 500px;
+			background: red;
+		}
+	</style>
+	<script>
+	window.onload = function() {
+		// 拖拽事件
+		var oLis = document.getElementsByTagName('li');
+		var oDiv = document.querySelector('#target');
+		for (var i = 0; i < oLis.length; i++) {
+			oLis[i].ondragstart = function(event) {
+				this.style.background = 'green';
+				event.dataTransfer.setData('name', 'hello');
+				event.dataTransfer.effectAllowed = 'link';
+			}
+
+			oLis[i].ondragend = function(event) {
+				this.style.background = 'yellow';
+			}
+
+			oLis[i].ondrag = function(event) {
+				// 拖拽过程中不管移动还是不动都一直触发
+			}
+		};
+		oDiv.ondragenter = function(event) {
+			this.style.background = 'blue';
+		}
+		oDiv.ondragleave = function(event) {
+			this.style.background = 'red';
+		}
+		/*
+			拖拽元素事件：
+			dragstart: 拖拽前触发
+			drag: 拖拽中触发
+			dragend: 拖拽后触发
+			目标元素事件：
+			dragenter: 进入目标元素前触发
+			dragover: 进入目标元素中触发
+			dragleave: 离开目标元素触发
+			drag: 在目标元素上释放鼠标触发，dragover中必须阻止默认事件
+
+			火狐下不能拖拽的解决：
+			需要设置事件对象下的dataTransfer.setData(key, value);
+		*/
+	}
+	</script>
+	<ul>
+		<li draggable="true">a</li>
+		<li draggable="true">b</li>
+		<li draggable="true">c</li>
+	</ul>
+	<div id="target"></div>
+</body>
+</html>

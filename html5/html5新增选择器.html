@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+	/*
+		新增三种选择器的方法
+		querySelector()
+		querySelectorAll()
+		getElementsByClassName()
+	*/
+	window.onload = function() {
+		var oDiv1 = document.querySelector('#div1');
+		oDiv1.style.background = 'red';
+
+		var oDiv2 = document.querySelectorAll('.div2');
+		oDiv2[0].style.background = 'yellow';
+		var oDiv3 = document.getElementsByClassName('div3');
+		oDiv3[0].style.background = 'blue';
+	}
+</script>
+<body>
+	<div id="div1">div1</div>
+	<div class="div2">.div2</div>
+	<div class="div3">.div3</div>
+</body>
+</html>

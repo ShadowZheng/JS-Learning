@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas介绍</title>
+</head>
+<style>
+	#c1 {
+		background: #ccc;
+	}
+</style>
+<script>
+	window.onload = function() {
+		var oC = document.querySelector('#c1');
+		var ctx = oC.getContext('2d'); //获取画布的绘制环境，目前只有2d环境
+		// 首先画一个方块
+		ctx.fillRect(0,0,100,100);
+		var num = 0;
+		setInterval(function() {
+			if (num == oC.width) {
+				num = 0;
+			};
+			num++;
+			ctx.clearRect(0,0,oC.width, oC.height);
+			ctx.fillRect(num,num,100,100);
+		}, 30);
+	}
+</script>
+<body>
+	<canvas id="c1" width="300" height="300"></canvas>
+</body>
+</html>

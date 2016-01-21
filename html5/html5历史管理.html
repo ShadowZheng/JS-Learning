@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+
+<style>
+	#nav {
+		list-style: none;
+	}
+	#nav a{
+		text-decoration: none;
+		color: #666;
+		display: block;
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		background: #ccc;
+		text-align: center;
+	} 
+	#nav a:hover {
+		background: #ddd;
+	}
+</style>
+<body>
+	<ul id="nav">
+		<li><a href="/1">1</a></li>
+		<li><a href="/2">2</a></li>
+		<li><a href="/3">3</a></li>
+	</ul>
+	<div id="content"></div>
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script>
+		window.onload = function() {
+			// var oUl = document.querySelector('#nav');
+			// var oLi = oUl.getElementsByTagName('li');
+			// for (var i = 0; i < oLi.length; i++) {
+			// 	oLi[i].onclick = function(event) {
+			// 		var _url = location.href + '?page=' + i;
+			// 		$()
+			// 		event.pushState(data, '', _url);
+			// 	}
+			// };
+		}
+		$(function() {
+			$('#nav a').click(function(event) {
+				event.preventDefault();
+				var _url = 'http://' + location.host + $(this).attr('href');
+				var index = $('#nav a').index($(this));
+				$.ajax({
+					url: '/html5/history.json',
+					type: 'GET',
+					dataType: 'json'
+				})
+				.done(function(data) {
+					var obj = data[index];
+					var html = '<p>' + obj.content + '</p>';
+					var state = {
+						url: _url,
+						html: html
+					};
+					$('#content').html(html);
+					history.pushState(state, '', _url);
+				});
+			});
+
+			$(window).on('popstate', function(event) {
+				if (event && event.originalEvent.state) {
+					$('#content').html(event.originalEvent.state.html);
+				};
+			});
+		})
+	</script>
+</body>
+</html>

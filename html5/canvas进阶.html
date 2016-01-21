@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas进阶</title>
+</head>
+<style>
+	canvas {background: #ccc;}
+</style>
+<script>
+	window.onload = function() {
+		var oC = document.querySelector('#c1');
+		var ctx = oC.getContext('2d');
+		// 线性渐变 参数L:起点坐标（x1,y1），终点坐标（x2,y2）
+		var obj = ctx.createLinearGradient(150,50,150,150);
+		obj.addColorStop(0, 'red'); //起点颜色
+		obj.addColorStop(1, 'blue');// 终点颜色 中间可以加多个点
+		ctx.fillStyle = obj; // 设置样式为渐变对象
+		ctx.fillRect(150,50,100,100);
+
+		var oC2 = document.querySelector('#c2');
+		var ctx2 = oC2.getContext('2d');
+		// 放射性渐变 参数：第一个圆坐标和半径(x1,y1,r1)，第二个圆坐标个半径(x2,y2,r2)
+		var obj2 = ctx2.createRadialGradient(200,200,100,200,200,150);
+		// 添加渐变断点
+		obj2.addColorStop(0,'red');
+		obj2.addColorStop(0.5,'yellow');
+		obj2.addColorStop(1,'blue');
+		ctx2.fillStyle = obj2;
+		ctx2.fillRect(0,0,oC2.width,oC2.height);
+
+		var oC3 = document.querySelector('#c3');
+		var ctx3 = oC3.getContext('2d');
+		ctx3.font = '60px impact'; // impact是文字样式必须写
+		ctx3.textAlign = 'left'; // 默认是left
+		ctx3.textBaseline = 'top'; // 默认是alphabetic
+		var w = ctx3.measureText('慕容展雲').width; //获取字体宽度
+		ctx3.shadowOffsetX = 10; // 字体X轴阴影偏移量
+		ctx3.shadowOffsetY = 10; // 字体Y轴阴影偏移量
+		ctx3.shadowBlur = 3; // 阴影高斯模糊值
+		ctx3.shadowColor = 'rgba(0,0,0,.5)'; // 阴影颜色
+		ctx3.fillText('慕容展雲',0,0); // 写出来的是实心的字体
+		// ctx3.strokeText('慕容展雲',0,0); // 虚线字体
+
+		var oC4 = document.querySelector('#c4');
+		var ctx4 = oC4.getContext('2d');
+		ctx4.moveTo(100, 200);
+		ctx4.arcTo(100,100, 300,100,50);
+		ctx4.stroke();
+
+		var oC5 = document.querySelector('#c5');
+		var ctx5 = oC5.getContext('2d');
+		ctx5.moveTo(100,200)
+		// 贝塞尔曲线 参数：第一组控制点（x1,y1） 结束点坐标（endX,endY）
+		ctx5.quadraticCurveTo(100,100,200,100);
+		ctx5.stroke();
+
+		var oC6 = document.querySelector('#c6');
+		var ctx6 = oC6.getContext('2d');
+		ctx6.moveTo(100,200)
+		// 贝塞尔曲线 参数： 第一个控制点（x1,y1） 第二个控制点(x2,y2) 结束点（endX,endY）
+		ctx6.bezierCurveTo(100,100,200,200,200,100);
+		ctx6.stroke();
+
+		var oC7 = document.querySelector('#c7');
+		var ctx7 = oC7.getContext('2d');
+		ctx7.translate(100,100);
+		ctx7.fillRect(0,0,100,100);
+
+		var oC8 = document.querySelector('#c8');
+		var ctx8 = oC8.getContext('2d');
+		ctx8.translate(100,100);
+		ctx8.rotate(45*Math.PI/180);
+		ctx8.fillRect(0,0,100,100);
+		
+
+		var oC9 = document.querySelector('#c9');
+		var ctx9 = oC9.getContext('2d');
+		ctx9.translate(100,100);
+		ctx9.scale(0.5, 0.5);
+		ctx9.rotate(45*Math.PI/180);
+		ctx9.fillRect(0,0,100,100);
+	}
+</script>
+<body>
+	<canvas id="c1" width="400" height="200"></canvas>
+	<canvas id="c2" width="400" height="400"></canvas>
+	<canvas id="c3" width="400" height="150"></canvas>
+	<canvas id="c4" width="300" height="300"></canvas>
+	<canvas id="c5" width="300" height="300"></canvas>
+	<canvas id="c6" width="300" height="300"></canvas>
+	<canvas id="c7" width="300" height="300"></canvas>
+	<canvas id="c8" width="300" height="300"></canvas>
+	<canvas id="c9" width="300" height="300"></canvas>
+</body>
+</html>
