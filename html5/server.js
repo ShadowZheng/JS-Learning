@@ -1,34 +1,18 @@
-var http = require('http');
-var fs = require('fs');
-var io = require('socket.io');
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-var rootPath = 'C:/Users/azheng/Desktop/miaov_JS/html5';
+server.listen(8888);
 
-// 创建一个server
-var server = http.createServer(function(req, res) {
-	var file = rootPath + req.url;
-	console.log(file);
-	fs.readFile(file, function(err, data) {
-		if (err) {
-			res.writeHeader(404, {
-				'content-type': 'text/html;charset="utf-8"'
-			});
-			res.write('<h1>404</h1><p>你找的页面不存在</p>');
-			res.end();
-		} else {
-			res.writeHeader(200, {
-				'content-type': 'text/html;charset="utf-8"'
-			});
-			res.write(data);
-			res.end();
-		}
-	});
-}).listen(8888);
+app.get('/', function(req, res) {
+	res.sendFile(__dirname + '/socket.html');
+});
 
-// 监听server
-var socket = io.listen(server);
+// 静态资源目录设置
+app.use('/static', express.static(__dirname + '/static'));
 
-// 监听socket连接事件
-socket.sockets.on('connection', function(socket) {
-	console.log('连接成功');
+io.on('connection', function(socket) {
+	socket.emit('join', '欢迎');
+	socket.broadcast.emit('listenJoin', '有新人进来了');
 });

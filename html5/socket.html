@@ -3,8 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<title>WebSocket</title>
+	<script src="/static/socket.io.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var oBtn = document.querySelector('#btn');
+			oBtn.onclick = function() {
+				var socket = io.connect('http://localhost:8888');
+				socket.on('join', function(data) {
+					alert(data);
+				});
+				socket.on('listenJoin', function(data) {
+					alert(data);
+				})
+			};
+
+		}
+	</script>
 </head>
 <body>
-	这个是返回的内容
+	<input id="btn" type="button" value="进入聊天室">
 </body>
 </html>

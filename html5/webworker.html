@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		console.time(1);
+		var num = 0;
+		var w1 = new Worker('worker.js');
+		w1.postMessage(num);
+		w1.onmessage = function(event) {
+			console.log(event.data);
+		}
+		console.timeEnd(1);
+	</script>
+</body>
+</html>
