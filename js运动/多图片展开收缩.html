@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			margin: 0;
+		}
+		ul {
+			width: 330px;
+			margin: 200px auto 0;
+			position: relative;
+			display: table;
+			clear: both;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+			margin: 10px 0 0 10px;
+			width: 100px;
+			height: 100px;
+			background: red;
+			float: left;
+		}
+	</style>
+	<script src="move.js"></script>
+	<script>
+		window.onload = function() {
+			var oUl = document.getElementById('ul');
+			var oLi = oUl.getElementsByTagName('li');
+			var arr = [];
+			var zIndex = 1;
+			for (var i = 0; i < oLi.length; i++) {
+				arr.push({
+					left: oLi[i].offsetLeft,
+					top: oLi[i].offsetTop
+				});
+			}
+
+			for (var i = 0; i < oLi.length; i++) {
+				oLi[i].style.left = arr[i].left + 'px';
+				oLi[i].style.top = arr[i].top + 'px';
+				oLi[i].style.position = 'absolute';
+				oLi[i].style.margin = '0';
+
+				oLi[i].index = i;
+				oLi[i].onmouseover = function() {
+					this.style.background = 'green';
+					this.style.zIndex = zIndex++;
+					startMove(this, {
+						width: 200,
+						height: 200,
+						left: arr[this.index].left - 50,
+						top: arr[this.index].top - 50
+					});
+				};
+
+				oLi[i].onmouseout = function() {
+					startMove(this, {
+						width: 100,
+						height: 100,
+						left: arr[this.index].left,
+						top: arr[this.index].top
+					});
+					this.style.background = 'red';
+				};
+			};
+
+		}
+	</script>
+</head>
+<body>
+	<ul id="ul">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+</html>

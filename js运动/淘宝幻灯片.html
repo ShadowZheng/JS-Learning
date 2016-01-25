@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝幻灯片</title>
+	<script src="move.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var oDiv = document.getElementById('carousel');
+			var oUl = document.getElementById('ul1');
+			var oLi = oUl.getElementsByTagName('li');
+			var oDot = document.getElementById('dots');
+			var oSpan = oDot.getElementsByTagName('span');
+
+			var iWidth = oLi[0].offsetWidth;
+			oUl.style.width = oLi.length * iWidth + 'px';
+
+			for (var i = 0; i < oSpan.length; i++) {
+				oSpan[i].index = i;
+				oSpan[i].onclick = function() {
+					for (var i = 0; i < oSpan.length; i++) {
+						oSpan[i].className = '';
+					}
+					this.className = 'active';
+					startMove(oUl, {
+						left: -iWidth * this.index
+					});
+				};
+			};
+		}
+	</script>
+	<style>
+		#carousel {
+			width: 520px;
+			height: 280px;
+			border: 1px solid #999;
+			margin: 200px auto 0;
+			position: relative;
+			overflow: hidden;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		img {
+			display: block;
+		}
+		li {
+			float: left;
+		}
+		#dots {
+			width: 100%;
+			position: absolute;
+			bottom: 10px;
+			text-align: center;
+		}
+		span {
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+			background: #ccc;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+		span.active {
+			background: orange;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="carousel">
+		<ul id="ul1">
+			<li><img src="img/1.png" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+			<li><img src="img/6.jpg" alt=""></li>
+		</ul>
+		<p id="dots">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</p>
+	</div>
+</body>
+</html>

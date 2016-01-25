@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function() {
+			var oBtn = document.getElementById('btn');
+			var oDiv = document.getElementById('div1');
+			var timer1 = null;
+			var iSpeed1 = 50;
+			// 减速运动  但是终点不好控制
+			oBtn.onclick = function() {
+				clearInterval(timer1);
+				timer1 = setInterval(function() {
+					iSpeed1 *= 0.9;
+					if (oDiv.offsetLeft == 500) {
+						clearInterval(timer1);
+					} else {
+						oDiv.style.left = oDiv.offsetLeft + iSpeed1 + 'px';
+					}
+				}, 30);
+			};
+
+			// 缓冲运动  速度和到目标的距离成正比
+			var oBtn1 = document.getElementById('btn1');
+			var oDiv2 = document.getElementById('div2');
+			var timer2 = null;
+			oBtn1.onclick = function() {
+				clearInterval(timer2);
+				var iSpeed2 = 0;
+				timer2 = setInterval(function() {
+					iSpeed2 = (500 - oDiv2.offsetLeft) / 8;
+					iSpeed2 = iSpeed2 > 0 ? Math.ceil(iSpeed2) : Math.floor(iSpeed2);
+					if (oDiv2.offsetLeft == 500) {
+						clearInterval(timer2);
+					} else {
+						oDiv2.style.left = oDiv2.offsetLeft + iSpeed2 + 'px';
+					}
+				}, 30);
+			};
+			/*
+				注意： js中offsetWidth计算的是四舍五入的css值
+			*/
+
+		}
+	</script>
+	<style>
+		body {
+			margin: 0;
+		}
+		#div1,
+		#div2 {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: relative;
+			left: 0;
+		}
+		#div2 {
+			left: 800px;
+		}
+	</style>
+</head>
+<body>
+	<p>
+		<input id="btn" type="button" value="减速运动">
+		<div id="div1"></div>
+	</p>
+	<p>
+		<input id="btn1" type="button" value="缓冲运动">
+		<div id="div2"></div>
+	</p>
+</body>
+</html>

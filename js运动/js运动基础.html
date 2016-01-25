@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            var oBtn = document.getElementById('btn');
+            var oImg = document.getElementById('img1');
+            var timer = null;
+            oBtn.onclick = function () {
+                startMove(500, 10);
+            };
+
+            function startMove(iTarget, iSpeed) {
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    if (oDiv.offsetLeft == iTarget) {
+                        clearInterval(timer);
+                    } else {
+                        oDiv.style.left = oDiv.offsetLeft + 10 + 'px';
+                    }
+                }, 30);
+
+            }
+
+
+        }
+    </script>
+    <style>
+        #div1 {
+            background: red;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="btn" value="动起来">
+    <div id="div1"></div>
+</body>
+</html>
